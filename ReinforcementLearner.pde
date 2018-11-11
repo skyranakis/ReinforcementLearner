@@ -24,41 +24,23 @@ void setup(){
   shouldDelay = false;
   
   //Displays the map and agent
-  background(255,255,255);
-  line(0,100, 400,100);
-  line(0,200, 400,200);
-  line(0,300, 400,300);
-  line(100,0, 100,400);
-  line(200,0, 200,400);
-  line(300,0, 300,400);
-  fill(255,0,0);
-  rect(start[0]*100, start[1]*100, start[0]*100+100, start[1]*100+100);
-  fill(0,255,0);
-  rect(goal[0]*100, goal[1]*100, goal[0]*100+100, goal[1]*100+100);
-  fill(0,0,255);
+  drawMap();
   ellipse(position[0]*100+50, position[1]*100+50, 75, 75);
 }
 
 void draw(){
   
-  //Displays the map and agent
-  background(255,255,255);
-  line(0,100, 400,100);
-  line(0,200, 400,200);
-  line(0,300, 400,300);
-  line(100,0, 100,400);
-  line(200,0, 200,400);
-  line(300,0, 300,400);
-  fill(255,0,0);
-  rect(start[0]*100, start[1]*100, start[0]*100+100, start[1]*100+100);
-  fill(0,255,0);
-  rect(goal[0]*100, goal[1]*100, goal[0]*100+100, goal[1]*100+100);
-  fill(0,0,255);
+  //Displays the map
+  drawMap();
   
   //If the agent reached the goal last turn, delay
   if (shouldDelay){
     delay(2000);
     shouldDelay = false;
+    //Draws map and agent at starting position
+    ellipse(position[0]*100+50, position[1]*100+50, 75, 75);
+    drawMap();
+    delay(200);
   }
 
   
@@ -87,4 +69,19 @@ void draw(){
     position[1] = start[1];
   }
   delay(200);
+}
+
+void drawMap(){
+  background(255,255,255);
+  line(0,100, 400,100);
+  line(0,200, 400,200);
+  line(0,300, 400,300);
+  line(100,0, 100,400);
+  line(200,0, 200,400);
+  line(300,0, 300,400);
+  fill(255,0,0);
+  rect(start[0]*100, start[1]*100, start[0]*100+100, start[1]*100+100);
+  fill(0,255,0);
+  rect(goal[0]*100, goal[1]*100, goal[0]*100+100, goal[1]*100+100);
+  fill(0,0,255);
 }
