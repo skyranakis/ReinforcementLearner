@@ -63,20 +63,18 @@ void draw(){
 
   
   //Moves the agent and displays again
-  //char c = a.move();
-  char c = 'd';
+  char c = a.move();
   switch (c){
     case 'u': if (position[1]!=0){
         position[1]--;
       }break;
     case 'd': if (position[1]!=3){
         position[1]++;
-      }else{noLoop();}
-      break;
+      }break;
     case 'l': if (position[0]!=0){
         position[0]--;
       }break;
-    case 'r': if (position[0]!=0){
+    case 'r': if (position[0]!=3){
         position[0]++;
       }break;
   }
