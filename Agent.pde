@@ -1,5 +1,6 @@
 abstract public class Agent
 {
-  public void reward(double r){};
-  public char move(){ return 'u';};
+  public void reward(double r){}
+  public char move(){return ' ';}
+  public String showModel(){return " ";}
 }

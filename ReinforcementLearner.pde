@@ -1,4 +1,5 @@
-SimpleLearner a;
+ArrayList<Agent> a;
+int agentIndex;
 int[] position;
 int[] start;
 int[] goal;
@@ -10,30 +11,34 @@ String info;
 void setup(){
   size(600,400);
 
-  //initializes start and goal points
+  //initializes start and goal points and position
   start = new int[2];
   start[0] = 0;
   start[1] = 0;
   goal = new int[2];
   goal[0] = 3;
   goal[1] = 3;
+  position = new int[2];
+  position[0] = start[0];
+  position[1] = start[1];
   
   numTrials = 0;
   timeTaken = 0;
   info = "";
   
-  //Creates and sets up the agent
-  a = new SimpleLearner();
-  position = new int[2];
-  position[0] = start[0];
-  position[1] = start[1];
+  //Creates and sets up the agents
+  a = new ArrayList<Agent>();
+  Agent sl = new SimpleLearner();
+  Agent sd = new SpeedDemon();
+  a.add(sl);
+  a.add(sd);
+  agentIndex = 1;  //Determines which agent to use
   
   shouldDelay = false;
   
   //Displays the map and agent
   drawMap();
-  fill(0,0,255);
-  ellipse(position[0]*100+50, position[1]*100+50, 75, 75);
+  drawAgent();
 }
 
 void draw(){
@@ -46,13 +51,14 @@ void draw(){
     delay(2000);
     shouldDelay = false;
     //Draws map and agent at starting position
-    fill(0,0,255);
-    ellipse(position[0]*100+50, position[1]*100+50, 75, 75);
+    drawAgent();
     drawMap();
     delay(200);
   }else{
     //Moves the agent
-    char c = a.move();
+    char c;
+    c = a.get(agentIndex).move();
+    
     switch (c){
       case 'u': if (position[1]!=0){
           position[1]--;
@@ -68,18 +74,19 @@ void draw(){
         }break;
     }
   }
-  fill(0,0,255);
-  ellipse(position[0]*100+50, position[1]*100+50, 75, 75);
+  drawAgent();
 
   if ((position[0] == goal[0]) && (position[1] == goal[1])){
-    a.reward(1);
+    
+    a.get(agentIndex).reward(timeTaken);
     shouldDelay = true;
+    
     updateInfo();
+    drawMap();
+    drawAgent();
+    
     numTrials++;
     timeTaken = 0;
-    drawMap();
-    fill(0,0,255);
-    ellipse(position[0]*100+50, position[1]*100+50, 75, 75);
     position[0] = start[0];
     position[1] = start[1];
   }
@@ -106,12 +113,13 @@ void drawMap(){
   text(info, 410, 10);
 }
 
+void drawAgent(){
+  fill(0,0,255);
+  ellipse(position[0]*100+50, position[1]*100+50, 75, 75);
+}
+
 void updateInfo(){
-  info += "Run #" + numTrials + "\n";
-  Map<String,Double> model = a.showModel();
-  Set< Map.Entry<String,Double> > st = model.entrySet();
-  for (Map.Entry<String,Double> me:st){ 
-    info += me.getKey() + ": " + String.format("%4.3f" , me.getValue()) + "  ";
-  }
-  info += "\n\n";
+  info += "Run #" + numTrials + " took " + timeTaken + " steps" + "\n";
+  info += a.get(agentIndex).showModel();
+  info += "\n";
 }

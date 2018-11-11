@@ -57,7 +57,7 @@ public class SimpleLearner extends Agent
   //Adjusts the model according to the reward
   public void reward(double r){
     
-    if (r==1){
+    if (r>=1){
       
       //Creates a new model
       int len = mem.length();
@@ -94,13 +94,13 @@ public class SimpleLearner extends Agent
   }
   
   //outputs the model
-  public Map<String,Double> showModel(){
-    Map<String,Double> newModel = new HashMap<String,Double>();
+  public String showModel(){
+    String s = "";
     Set< Map.Entry<String,Double> > st = model.entrySet();
     for (Map.Entry<String,Double> me:st){ 
-      newModel.put(me.getKey(), me.getValue());
+      s += me.getKey() + ": " + String.format("%4.3f" , me.getValue()) + "  ";
     }
-    return newModel;
+    return s;
   }
   
 }
