@@ -50,7 +50,6 @@ public class SimpleLearner{
     }
     
     mem += c;
-    print(mem+"\n");
     return c;
   }
   
@@ -92,4 +91,15 @@ public class SimpleLearner{
       mem = "";
     }
   }
+  
+  //outputs the model
+  public Map<String,Double> showModel(){
+    Map<String,Double> newModel = new HashMap<String,Double>();
+    Set< Map.Entry<String,Double> > st = model.entrySet();
+    for (Map.Entry<String,Double> me:st){ 
+      newModel.put(me.getKey(), me.getValue());
+    }
+    return newModel;
+  }
+  
 }
