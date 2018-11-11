@@ -13,9 +13,12 @@ public class SimpleLearner{
     model.put("l", new Double(0.25));
     model.put("r", new Double(0.25));
     explore = .1;
+    s = "";
   }
   
   public char move(){
+    
+    char c = ' ';
     
     //Determines whether to explore
     double e = Math.random();
@@ -24,10 +27,10 @@ public class SimpleLearner{
     if (e <= explore){
       int rand = (int)(Math.random()*model.size());
       switch (rand){
-        case 0: return 'u';
-        case 1: return 'd';
-        case 2: return 'l';
-        case 3: return 'r';
+        case 0: c = 'u'; break;
+        case 1: c = 'd'; break;
+        case 2: c = 'l'; break;
+        case 3: c = 'r'; break;
       }
     }
     
@@ -39,11 +42,14 @@ public class SimpleLearner{
       for (Map.Entry<String,Double> me:st){  //Iterates over map
         total += me.getValue();
         if (v<=total){
-          return me.getKey().charAt(0);
+          c = me.getKey().charAt(0);
+          break;
         }
       }
     }
     
-    return ' ';
+    s += c;
+    print(s+"\n");
+    return c;
   }
 }
