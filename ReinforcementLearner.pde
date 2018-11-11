@@ -63,7 +63,7 @@ void draw(){
   ellipse(position[0]*100+50, position[1]*100+50, 75, 75);
 
   if ((position[0] == goal[0]) && (position[1] == goal[1])){
-    //a.reward(1);
+    a.reward(1);
     shouldDelay = true;
     position[0] = start[0];
     position[1] = start[1];
