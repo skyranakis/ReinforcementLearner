@@ -1,6 +1,7 @@
 import java.util.*;
 
-public class SimpleLearner{
+public class SimpleLearner extends Agent
+{
   Map<String,Double> model;    //Will drive decisions
   double explore;              //Exploration rate
   String mem;                    //Path to remember
@@ -54,7 +55,7 @@ public class SimpleLearner{
   }
   
   //Adjusts the model according to the reward
-  public void reward(int r){
+  public void reward(double r){
     
     if (r==1){
       
