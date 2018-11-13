@@ -1,0 +1,15 @@
+Metric for success of different agents
+	Expected value of model
+	Time to reach optimal model
+SimpleLearner2
+	model is ints, not doubles, and the values get reinforced.
+Punishment for touching sides
+Map reading system
+New, more interesting maps
+Better info display system
+Checkpoints in map
+Model with understanding of position
+Model with understandinf of current and surrounding squares
+Model that can stay
+	To help build towards Labyrinth AI
+	To demonstrate wireheading
