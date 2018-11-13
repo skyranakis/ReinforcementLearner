@@ -32,7 +32,8 @@ void setup(){
   a = new ArrayList<Agent>();
   a.add(new SimpleLearner());
   a.add(new SpeedDemon());
-  agentIndex = 0;  //Determines which agent to use
+  a.add(new SpeedDemonWExploration());
+  agentIndex = 2;  //Determines which agent to use
   
   shouldDelay = false;
   

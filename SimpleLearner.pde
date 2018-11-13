@@ -14,7 +14,6 @@ import java.util.*;
 public class SimpleLearner implements Agent
 {
   Map<String,Double> model;    //Will drive decisions
-  double explore;              //Exploration rate
   String mem;                    //Path to remember
   
   //Default Constructor
@@ -24,43 +23,22 @@ public class SimpleLearner implements Agent
     model.put("d", new Double(0.25));
     model.put("l", new Double(0.25));
     model.put("r", new Double(0.25));
-    explore = 0;
     mem = "";
   }
   
   //Outputs a character corresponding to the move that should be made
   public char move(){
-    
     char c = ' ';
-    
-    //Determines whether to explore
-    double e = Math.random();
-    
-    //Explores
-    if (e <= explore){
-      int rand = (int)(Math.random()*4);
-      switch (rand){
-        case 0: c = 'u'; break;
-        case 1: c = 'd'; break;
-        case 2: c = 'l'; break;
-        case 3: c = 'r'; break;
+    double v = Math.random();
+    double total = 0;
+    Set< Map.Entry<String,Double> > st = model.entrySet();
+    for (Map.Entry<String,Double> me:st){  //Iterates over map
+      total += me.getValue();
+      if (v<=total){
+        c = me.getKey().charAt(0);
+        break;
       }
     }
-    
-    //Exploits
-    else{
-      double v = Math.random();
-      double total = 0;
-      Set< Map.Entry<String,Double> > st = model.entrySet();
-      for (Map.Entry<String,Double> me:st){  //Iterates over map
-        total += me.getValue();
-        if (v<=total){
-          c = me.getKey().charAt(0);
-          break;
-        }
-      }
-    }
-    
     mem += c;
     return c;
   }
