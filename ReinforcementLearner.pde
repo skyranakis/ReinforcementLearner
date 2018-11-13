@@ -1,3 +1,5 @@
+//Implements toy demonstration of a reinforcement learner wandering around a field of squares
+
 ArrayList<Agent> a;
 int agentIndex;
 int[] position;
@@ -9,7 +11,7 @@ int timeTaken;
 String info;
 
 void setup(){
-  size(600,400);
+  size(600,800);
 
   //initializes start and goal points and position
   start = new int[2];
@@ -28,11 +30,9 @@ void setup(){
   
   //Creates and sets up the agents
   a = new ArrayList<Agent>();
-  Agent sl = new SimpleLearner();
-  Agent sd = new SpeedDemon();
-  a.add(sl);
-  a.add(sd);
-  agentIndex = 1;  //Determines which agent to use
+  a.add(new SimpleLearner());
+  a.add(new SpeedDemon());
+  agentIndex = 0;  //Determines which agent to use
   
   shouldDelay = false;
   
@@ -43,18 +43,14 @@ void setup(){
 
 void draw(){
   
-  //Displays the map
-  drawMap();
-  
-  //If the agent reached the goal last turn, delay and move to start
+  //If the agent reached the goal last turn, delay and move to beginning
   if (shouldDelay){
     delay(2000);
     shouldDelay = false;
-    //Draws map and agent at starting position
-    drawAgent();
-    drawMap();
-    delay(200);
-  }else{
+    position[0] = start[0];
+    position[1] = start[1];
+  }
+  else{
     //Moves the agent
     char c;
     c = a.get(agentIndex).move();
@@ -74,24 +70,24 @@ void draw(){
         }break;
     }
   }
-  drawAgent();
-
+  
+  //Handles agent reaching goal
   if ((position[0] == goal[0]) && (position[1] == goal[1])){
     
     a.get(agentIndex).reward(timeTaken);
     shouldDelay = true;
     
+    //Record and reset
     updateInfo();
-    drawMap();
-    drawAgent();
-    
     numTrials++;
     timeTaken = 0;
-    position[0] = start[0];
-    position[1] = start[1];
   }
   timeTaken++;
-  delay(200);
+  delay(100);  //Delay necessary to animate
+  
+  //Displays the map and agent
+  drawMap();
+  drawAgent();
 }
 
 void drawMap(){
@@ -99,6 +95,7 @@ void drawMap(){
   line(0,100, 400,100);
   line(0,200, 400,200);
   line(0,300, 400,300);
+  line(0,400, 400,400);
   line(100,0, 100,400);
   line(200,0, 200,400);
   line(300,0, 300,400);
@@ -120,6 +117,6 @@ void drawAgent(){
 
 void updateInfo(){
   info += "Run #" + numTrials + " took " + timeTaken + " steps" + "\n";
-  info += a.get(agentIndex).showModel();
+  info += a.get(agentIndex);
   info += "\n";
 }

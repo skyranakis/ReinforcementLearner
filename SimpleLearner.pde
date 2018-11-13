@@ -1,6 +1,17 @@
+//Simple form of reinforcement learner that holds expected values of each direction using doubles
+
+
+/* Notes on SimpleLearner:
+    Any set of values (barring r=0 or d=0 for Map1, for example) will work given enough time, so maybe it doesn't
+      necesssarily converge to optimal solution (I don't want to do that math right now)
+    It can also diverge FROM optimal solution (that's frustrating)
+    Wouldn't work for large maps
+    Can't adjust mid-trial (not sure if feature or bug)
+*/
+
 import java.util.*;
 
-public class SimpleLearner extends Agent
+public class SimpleLearner implements Agent
 {
   Map<String,Double> model;    //Will drive decisions
   double explore;              //Exploration rate
@@ -94,7 +105,7 @@ public class SimpleLearner extends Agent
   }
   
   //outputs the model
-  public String showModel(){
+  public String toString(){
     String s = "";
     Set< Map.Entry<String,Double> > st = model.entrySet();
     for (Map.Entry<String,Double> me:st){ 

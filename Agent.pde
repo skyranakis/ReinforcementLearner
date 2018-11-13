@@ -1,6 +1,6 @@
-abstract public class Agent
+interface Agent
 {
-  public void reward(double r){}
-  public char move(){return ' ';}
-  public String showModel(){return " ";}
+  public void reward(double r);
+  public char move();
+  public String toString();
 }
