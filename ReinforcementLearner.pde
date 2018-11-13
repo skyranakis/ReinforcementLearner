@@ -25,7 +25,7 @@ void setup(){
   position[0] = start[0];
   position[1] = start[1];
   
-  numTrials = 0;
+  numTrials = 1;
   timeTaken = 0;
   info = "";
   

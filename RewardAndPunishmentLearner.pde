@@ -12,9 +12,9 @@ public class RewardAndPunishmentLearner implements Agent
   //Default Constructor
   public RewardAndPunishmentLearner(){
     model = new HashMap<String,Double>();
-    model.put("u", new Double(1));
+    model.put("u", new Double(10));
     model.put("d", new Double(1));
-    model.put("l", new Double(1));
+    model.put("l", new Double(10));
     model.put("r", new Double(1));
     tValue = 4;  
     mem = "";
