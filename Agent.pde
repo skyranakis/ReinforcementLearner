@@ -1,6 +1,6 @@
 interface Agent
 {
-  public void reward(double r);
+  public void reward(int time, double reward);
   public char move();
   public String toString();
 }

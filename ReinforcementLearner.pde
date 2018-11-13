@@ -9,6 +9,7 @@ boolean shouldDelay;
 int numTrials;
 int timeTaken;
 String info;
+Agent curA;
 
 void setup(){
   size(600,800);
@@ -30,10 +31,12 @@ void setup(){
   
   //Creates and sets up the agents
   a = new ArrayList<Agent>();
-  a.add(new SimpleLearner());
-  a.add(new SpeedDemon());
-  a.add(new SpeedDemonWExploration());
-  agentIndex = 2;  //Determines which agent to use
+  a.add(new SimpleLearner());  //0
+  a.add(new SpeedDemon());  //1
+  a.add(new SpeedDemonWExploration());  //2
+  a.add(new RewardAndPunishmentLearner());  //3
+  agentIndex = 3;  //Determines which agent to use
+  curA = a.get(agentIndex);
   
   shouldDelay = false;
   
@@ -50,24 +53,37 @@ void draw(){
     shouldDelay = false;
     position[0] = start[0];
     position[1] = start[1];
+    timeTaken--;  //Because this loop shouldn't count
   }
   else{
     //Moves the agent
     char c;
-    c = a.get(agentIndex).move();
+    c = curA.move();
     
     switch (c){
-      case 'u': if (position[1]!=0){
+      case 'u': 
+        if (position[1]!=0){       //If it doesn't hit wall
           position[1]--;
+        }else{                     //If it hits wall
+          punish();
         }break;
-      case 'd': if (position[1]!=3){
+      case 'd': 
+        if (position[1]!=3){
           position[1]++;
+        }else{                     
+          punish();
         }break;
-      case 'l': if (position[0]!=0){
+      case 'l': 
+        if (position[0]!=0){
           position[0]--;
+        }else{                     
+          punish();
         }break;
-      case 'r': if (position[0]!=3){
+      case 'r': 
+        if (position[0]!=3){
           position[0]++;
+        }else{                     
+          punish();
         }break;
     }
   }
@@ -75,7 +91,7 @@ void draw(){
   //Handles agent reaching goal
   if ((position[0] == goal[0]) && (position[1] == goal[1])){
     
-    a.get(agentIndex).reward(timeTaken);
+    curA.reward(timeTaken, 10);
     shouldDelay = true;
     
     //Record and reset
@@ -89,6 +105,10 @@ void draw(){
   //Displays the map and agent
   drawMap();
   drawAgent();
+}
+
+void punish(){
+  curA.reward(timeTaken, -1);
 }
 
 void drawMap(){
@@ -118,6 +138,6 @@ void drawAgent(){
 
 void updateInfo(){
   info += "Run #" + numTrials + " took " + timeTaken + " steps" + "\n";
-  info += a.get(agentIndex);
+  info += curA;
   info += "\n";
 }

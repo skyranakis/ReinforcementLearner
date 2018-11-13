@@ -44,9 +44,10 @@ public class SimpleLearner implements Agent
   }
   
   //Adjusts the model according to the reward
-  public void reward(double r){
+  public void reward(int time, double reward){
     
-    if (r>=1){
+    //Causes it to ignore punishment
+    if(reward>0){
       
       //Creates a new model
       int len = mem.length();
@@ -67,7 +68,6 @@ public class SimpleLearner implements Agent
         }
       }
       
-      
       //Updates the actual model based on the new
       Set< Map.Entry<String,Double> > st2 = newModel.entrySet();
       for (Map.Entry<String,Double> me:st2){ 
@@ -80,6 +80,7 @@ public class SimpleLearner implements Agent
       //Resets the memory
       mem = "";
     }
+    
   }
   
   //outputs the model
