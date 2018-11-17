@@ -19,8 +19,8 @@ void setup(){
   start[0] = 0;
   start[1] = 0;
   goal = new int[2];
-  goal[0] = 3;
-  goal[1] = 3;
+  goal[0] = 7;
+  goal[1] = 7;
   position = new int[2];
   position[0] = start[0];
   position[1] = start[1];
@@ -36,7 +36,7 @@ void setup(){
   a.add(new SpeedDemonWExploration());  //2
   a.add(new RewardAndPunishmentLearner());  //3
   a.add(new RewardAndPunishmentLearner2());  //4
-  agentIndex = 1;  //Determines which agent to use
+  agentIndex = 0;  //Determines which agent to use
   curA = a.get(agentIndex);
   
   shouldDelay = false;
@@ -69,7 +69,7 @@ void draw(){
           punish();
         }break;
       case 'd': 
-        if (position[1]!=3){
+        if (position[1]!=7){
           position[1]++;
         }else{                     
           punish();
@@ -81,7 +81,7 @@ void draw(){
           punish();
         }break;
       case 'r': 
-        if (position[0]!=3){
+        if (position[0]!=7){
           position[0]++;
         }else{                     
           punish();
@@ -119,18 +119,26 @@ void rewardForGoal(){
 
 void drawMap(){
   background(255,255,255);
+  line(0,50, 400,50);
   line(0,100, 400,100);
+  line(0,150, 400,150);
   line(0,200, 400,200);
+  line(0,250, 400,250);
   line(0,300, 400,300);
+  line(0,350, 400,350);
   line(0,400, 400,400);
+  line(50,0, 50,400);
   line(100,0, 100,400);
+  line(150,0, 150,400);
   line(200,0, 200,400);
+  line(250,0, 250,400);
   line(300,0, 300,400);
+  line(350,0, 350,400);
   line(400,0, 400,400);
   fill(255,0,0);
-  rect(start[0]*100, start[1]*100, start[0]*100+100, start[1]*100+100);
+  rect(start[0]*50, start[1]*50, 50, 50);
   fill(0,255,0);
-  rect(goal[0]*100, goal[1]*100, 100, 100);
+  rect(goal[0]*50, goal[1]*50, 50, 50);
   fill(0,0,255);
   fill(0);
   textSize(8);
@@ -139,7 +147,7 @@ void drawMap(){
 
 void drawAgent(){
   fill(0,0,255);
-  ellipse(position[0]*100+50, position[1]*100+50, 75, 75);
+  ellipse(position[0]*50+25, position[1]*50+25, 30, 30);
 }
 
 void updateInfo(){

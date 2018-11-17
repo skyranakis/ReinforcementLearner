@@ -2,6 +2,11 @@ Metric for success of different agents
 	Expected value of model
 	Time to reach optimal model
 Map reading system
+	Update display map
+		Use squares instead of lines
+	Update agent
+		Especially size
+	Update bounds for going out of bounds
 New, more interesting maps
 Better info display system
 Checkpoints in map
@@ -15,4 +20,3 @@ Nonrandom seeding
 Actual Interface
 Document properly
 Handle overflows in RP2
-Fix negative reward issues in SpeedDemon
