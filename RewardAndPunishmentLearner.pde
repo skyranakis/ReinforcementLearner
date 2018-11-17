@@ -71,11 +71,6 @@ public class RewardAndPunishmentLearner implements Agent
       }
       
     }
-      
-    //Resets the memory if the goal is reached and a new trial is about to begin
-    if (reward==10){
-      mem = "";
-    }
     
   }
   
@@ -96,6 +91,11 @@ public class RewardAndPunishmentLearner implements Agent
     for (Map.Entry<String,Double> me:st){  //Iterates over map
       tValue += me.getValue();
     }
+  }
+  
+  //Resets memory
+  public void softReset(){
+    mem = "";
   }
   
 }

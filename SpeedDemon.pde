@@ -18,10 +18,9 @@ public class SpeedDemon extends SimpleLearner{
   //Overrides the other reward function to only work if the new time sets a record
   public void reward(int time, double reward){
     if ( time<recordTime ){
-      super.reward(time, 1);
+      super.reward(time, reward);
       recordTime = time;
     }
-    mem = "";
   }
   
 }

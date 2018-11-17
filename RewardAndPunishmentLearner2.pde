@@ -26,11 +26,6 @@ public class RewardAndPunishmentLearner2 extends RewardAndPunishmentLearner
       updateTValue();
       
     }
-      
-    //Resets the memory if the goal is reached and a new trial is about to begin
-    if (reward==10){
-      mem = "";
-    }
     
   }
   

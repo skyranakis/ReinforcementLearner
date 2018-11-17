@@ -14,5 +14,5 @@ Pure punishment
 Nonrandom seeding
 Actual Interface
 Document properly
-Make memory resetting a separate thing
 Handle overflows in RP2
+Fix negative reward issues in SpeedDemon

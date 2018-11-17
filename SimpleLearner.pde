@@ -76,9 +76,8 @@ public class SimpleLearner implements Agent
         model.remove(key);
         model.put(key, newValue);
       }
-      
-      //Resets the memory
-      mem = "";
+      print(mem+"\n");
+
     }
     
   }
@@ -91,6 +90,11 @@ public class SimpleLearner implements Agent
       s += me.getKey() + ": " + String.format("%4.3f" , me.getValue()) + "  ";
     }
     return s;
+  }
+  
+  //Resets memory
+  public void softReset(){
+    mem = "";
   }
   
 }

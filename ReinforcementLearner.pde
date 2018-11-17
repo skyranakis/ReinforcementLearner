@@ -91,14 +91,7 @@ void draw(){
   
   //Handles agent reaching goal
   if ((position[0] == goal[0]) && (position[1] == goal[1])){
-    
-    curA.reward(timeTaken, 10);
-    shouldDelay = true;
-    
-    //Record and reset
-    updateInfo();
-    numTrials++;
-    timeTaken = 0;
+    handleReachingGoal();
   }
   timeTaken++;
   delay(100);  //Delay necessary to animate
@@ -110,6 +103,19 @@ void draw(){
 
 void punish(){
   curA.reward(timeTaken, -1);
+}
+
+void handleReachingGoal(){
+  rewardForGoal();
+  curA.softReset();
+  shouldDelay = true;
+  updateInfo();
+  numTrials++;
+  timeTaken = 0;
+}
+
+void rewardForGoal(){
+  curA.reward(timeTaken, 10);
 }
 
 void drawMap(){
