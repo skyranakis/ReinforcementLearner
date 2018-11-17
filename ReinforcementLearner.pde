@@ -35,7 +35,8 @@ void setup(){
   a.add(new SpeedDemon());  //1
   a.add(new SpeedDemonWExploration());  //2
   a.add(new RewardAndPunishmentLearner());  //3
-  agentIndex = 3;  //Determines which agent to use
+  a.add(new RewardAndPunishmentLearner2());  //4
+  agentIndex = 4;  //Determines which agent to use
   curA = a.get(agentIndex);
   
   shouldDelay = false;

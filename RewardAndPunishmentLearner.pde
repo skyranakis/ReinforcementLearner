@@ -1,5 +1,6 @@
 /*Responds to both Reward and Punishment
     Holy crap this works really well, at least for Map1
+    Additive reward function prevents good models from pulling too far ahead
 */
 import java.util.*;
 
@@ -12,9 +13,9 @@ public class RewardAndPunishmentLearner implements Agent
   //Default Constructor
   public RewardAndPunishmentLearner(){
     model = new HashMap<String,Double>();
-    model.put("u", new Double(10));
+    model.put("u", new Double(1));
     model.put("d", new Double(1));
-    model.put("l", new Double(10));
+    model.put("l", new Double(1));
     model.put("r", new Double(1));
     tValue = 4;  
     mem = "";
@@ -52,18 +53,23 @@ public class RewardAndPunishmentLearner implements Agent
   //Adjusts the model according to the reward
   public void reward(int time, double reward){
     int len = mem.length();    //should = time
+    
     for (int i=0; i<len; i++){
       char curChar = mem.charAt(i);
+      
       if (len==0){
         len = 1;    //Unscientific, but avoids division by 0
       }
+      
       model.put(""+curChar, model.get(""+curChar)+reward/len); //adds reward/len to the value associated with the current char
       tValue += reward/len;
       double diff = model.get(""+curChar);
+      
       if ( diff<0 ){    //Makes sure no valuses are negative
         model.put(""+curChar, new Double(0));
         tValue -= diff;
       }
+      
     }
       
     //Resets the memory if the goal is reached and a new trial is about to begin
@@ -81,6 +87,15 @@ public class RewardAndPunishmentLearner implements Agent
       s += me.getKey() + ": " + String.format("%4.3f" , me.getValue()) + "  ";
     }
     return s;
+  }
+  
+  //Updates tValue based on the current model
+  public void updateTValue(){
+    tValue = 0;
+    Set< Map.Entry<String,Double> > st = model.entrySet();
+    for (Map.Entry<String,Double> me:st){  //Iterates over map
+      tValue += me.getValue();
+    }
   }
   
 }

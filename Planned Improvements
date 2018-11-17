@@ -6,8 +6,13 @@ New, more interesting maps
 Better info display system
 Checkpoints in map
 Model with understanding of position
-Model with understandinf of current and surrounding squares
+Model with understanding of current and surrounding squares
 Model that can stay
 	To help build towards Labyrinth AI
 	To demonstrate wireheading
 Pure punishment
+Nonrandom seeding
+Actual Interface
+Document properly
+Make memory resetting a separate thing
+Handle overflows in RP2
