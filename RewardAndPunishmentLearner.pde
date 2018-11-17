@@ -51,7 +51,7 @@ public class RewardAndPunishmentLearner implements Agent
   }
   
   //Adjusts the model according to the reward
-  public void reward(int time, double reward){
+  public void reward(int time, double reward, boolean reachedGoal){
     int len = mem.length();    //should = time
     
     for (int i=0; i<len; i++){
@@ -70,6 +70,10 @@ public class RewardAndPunishmentLearner implements Agent
         tValue -= diff;
       }
       
+    }
+    
+    if (reachedGoal){
+      softReset();
     }
     
   }
@@ -94,7 +98,7 @@ public class RewardAndPunishmentLearner implements Agent
   }
   
   //Resets memory
-  public void softReset(){
+  protected void softReset(){
     mem = "";
   }
   

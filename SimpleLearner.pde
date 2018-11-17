@@ -44,10 +44,9 @@ public class SimpleLearner implements Agent
   }
   
   //Adjusts the model according to the reward
-  public void reward(int time, double reward){
+  public void reward(int time, double reward, boolean reachedGoal){
     
-    //Causes it to ignore punishment
-    if(reward>0){
+    if (reachedGoal){
       
       //Creates a new model
       int len = mem.length();
@@ -76,7 +75,8 @@ public class SimpleLearner implements Agent
         model.remove(key);
         model.put(key, newValue);
       }
-      print(mem+"\n");
+      
+      softReset();
 
     }
     
@@ -93,7 +93,7 @@ public class SimpleLearner implements Agent
   }
   
   //Resets memory
-  public void softReset(){
+  protected void softReset(){
     mem = "";
   }
   

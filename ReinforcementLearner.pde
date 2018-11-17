@@ -36,7 +36,7 @@ void setup(){
   a.add(new SpeedDemonWExploration());  //2
   a.add(new RewardAndPunishmentLearner());  //3
   a.add(new RewardAndPunishmentLearner2());  //4
-  agentIndex = 4;  //Determines which agent to use
+  agentIndex = 1;  //Determines which agent to use
   curA = a.get(agentIndex);
   
   shouldDelay = false;
@@ -102,12 +102,11 @@ void draw(){
 }
 
 void punish(){
-  curA.reward(timeTaken, -1);
+  curA.reward(timeTaken, -1, false);
 }
 
 void handleReachingGoal(){
   rewardForGoal();
-  curA.softReset();
   shouldDelay = true;
   updateInfo();
   numTrials++;
@@ -115,7 +114,7 @@ void handleReachingGoal(){
 }
 
 void rewardForGoal(){
-  curA.reward(timeTaken, 10);
+  curA.reward(timeTaken, 10, true);
 }
 
 void drawMap(){

@@ -10,7 +10,7 @@ public class RewardAndPunishmentLearner2 extends RewardAndPunishmentLearner
   }
   
   //Overrides reward to use multiplication instead of addition for exponential gains
-  public void reward(int time, double reward){
+  public void reward(int time, double reward, boolean reachedGoal){
     int len = mem.length();    //should = time
     
     for (int i=0; i<len; i++){
@@ -25,6 +25,10 @@ public class RewardAndPunishmentLearner2 extends RewardAndPunishmentLearner
       model.put(""+curChar, newVal); 
       updateTValue();
       
+    }
+    
+    if (reachedGoal){
+      softReset();
     }
     
   }
