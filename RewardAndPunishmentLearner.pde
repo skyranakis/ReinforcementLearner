@@ -9,9 +9,10 @@ public class RewardAndPunishmentLearner implements Agent
   Map<String,Double> model;     //Will drive decisions
   String mem;                   //Path to remember
   double tValue;                //Tracks sum of all values (for move)
+  Random rand;
   
   //Default Constructor
-  public RewardAndPunishmentLearner(){
+  public RewardAndPunishmentLearner(Random r){
     model = new HashMap<String,Double>();
     model.put("u", new Double(1));
     model.put("d", new Double(1));
@@ -19,12 +20,13 @@ public class RewardAndPunishmentLearner implements Agent
     model.put("r", new Double(1));
     tValue = 4;  
     mem = "";
+    rand = r;
   }
   
   //Outputs a character corresponding to the move that should be made
   public char move(){
     char c = ' ';
-    double v = Math.random()*tValue;
+    double v = rand.nextDouble()*tValue;
     double total = 0;
     Set< Map.Entry<String,Double> > st = model.entrySet();
     for (Map.Entry<String,Double> me:st){  //Iterates over map
@@ -35,7 +37,7 @@ public class RewardAndPunishmentLearner implements Agent
       }
     }
     if ( total==0 ){    //Choose randomly if it's 0 all around, so it's stuck
-      double d2 = Math.random();
+      double d2 = rand.nextDouble();
       if (d2<0.25){
         c = 'u';
       }else if (d2<0.5){

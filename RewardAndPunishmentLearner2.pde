@@ -5,8 +5,8 @@
 public class RewardAndPunishmentLearner2 extends RewardAndPunishmentLearner
 {
   
-  public RewardAndPunishmentLearner2(){
-    super();
+  public RewardAndPunishmentLearner2(Random r){
+    super(r);
   }
   
   //Overrides reward to use multiplication instead of addition for exponential gains

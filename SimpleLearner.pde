@@ -17,19 +17,20 @@ public class SimpleLearner implements Agent
   String mem;                    //Path to remember
   
   //Default Constructor
-  public SimpleLearner(){
+  public SimpleLearner(Random r){
     model = new HashMap<String,Double>();
     model.put("u", new Double(0.25));
     model.put("d", new Double(0.25));
     model.put("l", new Double(0.25));
     model.put("r", new Double(0.25));
     mem = "";
+    rand = r;
   }
   
   //Outputs a character corresponding to the move that should be made
   public char move(){
     char c = ' ';
-    double v = Math.random();
+    double v = rand.nextDouble();
     double total = 0;
     Set< Map.Entry<String,Double> > st = model.entrySet();
     for (Map.Entry<String,Double> me:st){  //Iterates over map

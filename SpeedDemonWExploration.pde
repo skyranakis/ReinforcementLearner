@@ -8,17 +8,17 @@ public class SpeedDemonWExploration extends SpeedDemon
   double explore;
   
   //Constructor
-  public SpeedDemonWExploration(){
-    super();
+  public SpeedDemonWExploration(Random r){
+    super(r);
     explore = 0.1;
   }
   
   //Overrides move function to explore
   public char move(){
-    double d = Math.random();
+    double d = rand.nextDouble();
     //Sometimes explore by chossing randomly
     if(d<=explore){
-      double d2 = Math.random();
+      double d2 = rand.nextDouble();
       char c = ' ';
       if (d2<0.25){
         c = 'u';

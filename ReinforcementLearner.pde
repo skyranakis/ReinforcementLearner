@@ -10,6 +10,8 @@ int numTrials;
 int timeTaken;
 String info;
 Agent curA;
+int seed;
+Random rand;
 
 void setup(){
   size(600,800);
@@ -28,18 +30,19 @@ void setup(){
   numTrials = 1;
   timeTaken = 0;
   info = "";
+  shouldDelay = false;
+  seed = 0;
+  rand = new Random(seed);
   
   //Creates and sets up the agents
   a = new ArrayList<Agent>();
-  a.add(new SimpleLearner());  //0
-  a.add(new SpeedDemon());  //1
-  a.add(new SpeedDemonWExploration());  //2
-  a.add(new RewardAndPunishmentLearner());  //3
-  a.add(new RewardAndPunishmentLearner2());  //4
-  agentIndex = 0;  //Determines which agent to use
+  a.add(new SimpleLearner(rand));  //0
+  a.add(new SpeedDemon(rand));  //1
+  a.add(new SpeedDemonWExploration(rand));  //2
+  a.add(new RewardAndPunishmentLearner(rand));  //3
+  a.add(new RewardAndPunishmentLearner2(rand));  //4
+  agentIndex = 4;  //Determines which agent to use
   curA = a.get(agentIndex);
-  
-  shouldDelay = false;
   
   //Displays the map and agent
   drawMap();

@@ -10,8 +10,8 @@ public class SpeedDemon extends SimpleLearner{
   int recordTime;  //Records record time
   
   //Constructor
-  public SpeedDemon(){
-    super();
+  public SpeedDemon(Random r){
+    super(r);
     recordTime = Integer.MAX_VALUE;
   }
   
