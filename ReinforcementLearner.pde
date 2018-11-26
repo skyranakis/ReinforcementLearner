@@ -1,5 +1,7 @@
 //Implements toy demonstration of a reinforcement learner wandering around a field of squares
 
+import controlP5.*;
+
 ArrayList<Agent> a;
 int agentIndex;
 int[] position;
@@ -12,9 +14,17 @@ String info;
 Agent curA;
 int seed;
 Random rand;
+ControlP5 cp5;
 
 void setup(){
   size(600,800);
+  
+  cp5 = new ControlP5(this);
+  cp5.addTextfield("Seed")
+    .setPosition(100,100)
+    .setSize(200,40)
+    .setFocus(true)
+    .setColor(color(255,0,0));
 
   //initializes start and goal points and position
   start = new int[2];
@@ -31,7 +41,11 @@ void setup(){
   timeTaken = 0;
   info = "";
   shouldDelay = false;
-  seed = 0;
+  String strSeed = "";
+  while ( strSeed.equals("") ){
+    strSeed = cp5.get(Textfield.class, "Seed").getText();
+  }
+  seed = Integer.parseInt(strSeed);
   rand = new Random(seed);
   
   //Creates and sets up the agents
