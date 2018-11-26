@@ -1,0 +1,23 @@
+Before 11/26/18
+Setup:
+	Used Java/Processing because I know it and want to keep the easy stuff easy
+	4x4 grid with start in upper left and goal in lower right
+	Up, down, left, and right allowed
+Started with Simple Learner:
+	Stores values for the four that add up to 1 using a Map<String, Double>
+	These values constitute probabilities
+	Built weighted random number generator in move method
+	Stores the moves in memory, a string
+	Reward counts the proportion of the moves in memory and makes these the model
+		i.e. 50% down, 30% right, 10% up, 10% left becomes 0.5d, 0.3r, 0.1u, 0.1l
+		Reward also deletes the memory
+	Best this could do is 0.5d, 0.5r, can't guarantee optimal solution every time
+	Can't "see"
+	Can't memorize path, doesn't know where it is
+	Works though, sometimes
+	Can diverge away from "correct" answer, annoying
+Moved on to SpeedDemon
+	Child of SimpleLearner
+	Overrides reward method to only update the model if the new time is faster
+	Also added the concept of time (numTrials and timeTaken) to the main sketch
+	Originally, the time was the reward
