@@ -21,3 +21,45 @@ Moved on to SpeedDemon
 	Overrides reward method to only update the model if the new time is faster
 	Also added the concept of time (numTrials and timeTaken) to the main sketch
 	Originally, the time was the reward
+	Seems to (not measured in any way) get stuck on good enough paths
+Moved on to SpeedDemonWExploration
+	Child of SpeedDemon
+	Overrides move method to introduce exploration rate of 10%
+	Seems to work better
+Made RewardAndPunishmentLearner
+	New type of agent that has unbounded doubles for the moves, stored in similar map
+	Similar move method with weighted random number generation, explores if all 0's
+	Reward:
+		Treats positive and negative rewards the same
+		Divides reward by time
+		Adds that quotient to each move for each time that move was used
+		Resets memory if the end is reached
+		For first time, updates during run
+			Could this help it handle corners?
+	Implemented -1 reward for hitting walls and 10 reward for reaching goal
+		Affects none of the others
+		Had to add things to other agents to make sure this had no effect
+	Worked really well and really quickly
+	Seems to get stuck at pretty good solutions (like 40d, 40r, 5u, 5l)
+Made RewardAndPunishmentLearner2
+	Child of RewardAndPunishmentLearner2
+	Reward overrided
+		Works similarly, except multiplies by 1+quotient mentioned above
+		Allows exponential growth and collapse of values
+	Works well
+	Sometimes one of d or r could run away with it
+Made new map
+	8x8, start in top left, goal in bottom right
+	SimpleLearner (SL), RewardAndPunishmentLearner (RnP), RnP2 work well
+	SpeedDemon (SD) and SpeedDemonWExploration (SDwE) don't work as well
+		Why?
+		Quantifiable?
+Made a seed for everything random
+	To record and repeat interesting examples
+Began work on menu
+	Did not get far, commented it all out
+
+11/26/28
+Created these notes
+	Earlier things based on memory and other, scattered notes
+

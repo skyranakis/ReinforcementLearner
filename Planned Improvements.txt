@@ -22,10 +22,11 @@ Document properly
 	Comments
 	Modularity
 	Fix strings in map (don't be lazy)
+	Make softReset public and remove from reward
 Handle overflows in RP2
-Make notes on thoughts and progress and such
 Find interesting seeds
 Pillbug demonstration
 	Give orientation
 	Make boxes so small as to appear continuous
 	Maybe actually make continuous
+Change toString to use scientific notation
