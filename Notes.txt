@@ -63,3 +63,16 @@ Began work on menu
 Created these notes
 	Earlier things based on memory and other, scattered notes
 
+12/15/18
+Noted:
+	Before 11/26/18 probably took about 24 hours, maximum
+	11/26/18 probably took about an hour
+Rules:
+	Can't change anything in this document, only add to it.
+	Track time in case this does work out.
+Deleted commented menu code to start over
+Added a menu to the game
+	First, wasn't actually a menu, just a screen that said "Menu" and disappeared
+	Made separate drawGame() and gameLoop() systems for what it has been so far
+		I know it's not really a "game," but roll with it
+	Added a set of booleans to indicate which state we're in

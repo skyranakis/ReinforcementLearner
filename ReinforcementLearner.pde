@@ -15,16 +15,15 @@ Agent curA;
 int seed;
 Random rand;
 ControlP5 cp5;
+boolean inMenu;
+boolean inGame;
+int tempCounter = 0;
 
 void setup(){
   size(600,800);
   
-  //cp5 = new ControlP5(this);
-  //cp5.addTextfield("Seed")
-  //  .setPosition(100,100)
-  //  .setSize(200,40)
-  //  .setFocus(true)
-  //  .setColor(color(255,0,0));
+  //Sets the menu mode on
+  turnMenuOn();
 
   //initializes start and goal points and position
   start = new int[2];
@@ -42,9 +41,7 @@ void setup(){
   info = "";
   shouldDelay = false;
   String strSeed = "0";
-  //while ( strSeed.equals("") ){
-  //  strSeed = cp5.get(Textfield.class, "Seed").getText();
-  //}
+
   seed = Integer.parseInt(strSeed);
   rand = new Random(seed);
   
@@ -58,13 +55,32 @@ void setup(){
   agentIndex = 4;  //Determines which agent to use
   curA = a.get(agentIndex);
   
-  //Displays the map and agent
-  drawMap();
-  drawAgent();
 }
 
 void draw(){
   
+  //Makes the menu do its thing
+  if(inMenu){
+    tempCounter++;
+    drawMenu();
+    if (tempCounter>100){
+        turnGameOn();
+    }
+  }
+  
+  //Makes the game do its thing
+  else if(inGame){
+    if (timeTaken == 0){  //drawsGame when game is first set up to display start state
+      drawGame();
+    }
+    gameLoop();
+    drawGame();
+    delay(100);  //Delay necessary to animate
+  }
+  
+}
+
+void gameLoop(){
   //If the agent reached the goal last turn, delay and move to beginning
   if (shouldDelay){
     delay(2000);
@@ -111,11 +127,6 @@ void draw(){
     handleReachingGoal();
   }
   timeTaken++;
-  delay(100);  //Delay necessary to animate
-  
-  //Displays the map and agent
-  drawMap();
-  drawAgent();
 }
 
 void punish(){
@@ -132,6 +143,18 @@ void handleReachingGoal(){
 
 void rewardForGoal(){
   curA.reward(timeTaken, 10, true);
+}
+
+void drawMenu(){
+  fill(0);
+  textSize(24);
+  text("Menu", 100, 100);
+}
+
+void drawGame(){
+  drawMap();
+  drawAgent();
+  drawInfo();
 }
 
 void drawMap(){
@@ -156,10 +179,6 @@ void drawMap(){
   rect(start[0]*50, start[1]*50, 50, 50);
   fill(0,255,0);
   rect(goal[0]*50, goal[1]*50, 50, 50);
-  fill(0,0,255);
-  fill(0);
-  textSize(8);
-  text(info, 410, 10);
 }
 
 void drawAgent(){
@@ -167,8 +186,24 @@ void drawAgent(){
   ellipse(position[0]*50+25, position[1]*50+25, 30, 30);
 }
 
+void drawInfo(){
+  fill(0);
+  textSize(8);
+  text(info, 410, 10);
+}
+
 void updateInfo(){
   info += "Run #" + numTrials + " took " + timeTaken + " steps" + "\n";
   info += curA;
   info += "\n";
+}
+
+void turnMenuOn(){
+  inMenu = true;
+  inGame = false;
+}
+
+void turnGameOn(){
+  inMenu = false;
+  inGame = true;
 }

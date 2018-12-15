@@ -8,6 +8,7 @@ Map reading system
 		Especially size
 	Update bounds for going out of bounds
 New, more interesting maps
+	Map maker
 Better info display system
 Checkpoints in map
 Model with understanding of position
