@@ -80,3 +80,6 @@ Added a menu to the game
 	Added a button on the game to return to the menu
 		Made a partial reset function
 		Need to add reset options to all agents
+	Added textfield to seed
+		Involved reworking some of the setup process
+		Added checkMenu() and setUpAgent()

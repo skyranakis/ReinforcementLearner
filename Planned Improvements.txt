@@ -10,6 +10,8 @@ Map reading system
 New, more interesting maps
 	Map maker
 Better info display system
+	Display seed
+	Display agent type
 Checkpoints in map
 Model with understanding of position
 Model with understanding of current and surrounding squares
@@ -32,3 +34,4 @@ Pillbug demonstration
 	Maybe actually make continuous
 Change toString to use scientific notation
 Add reset for all agents
+Menu

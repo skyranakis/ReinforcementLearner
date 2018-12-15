@@ -20,10 +20,6 @@ boolean inGame;
 
 void setup(){
   size(600,800);
-  
-  //Sets the menu mode
-  cp5 = new ControlP5(this);
-  turnMenuOn();
 
   //initializes start and goal points and position
   start = new int[2];
@@ -40,10 +36,13 @@ void setup(){
   timeTaken = 0;
   info = "";
   shouldDelay = false;
-  String strSeed = "0";
 
-  seed = Integer.parseInt(strSeed);
+  seed = 0;
   rand = new Random(seed);
+  
+  //Sets the menu mode
+  cp5 = new ControlP5(this);
+  turnMenuOn();
   
   //Creates and sets up the agents
   a = new ArrayList<Agent>();
@@ -144,6 +143,8 @@ void drawMenu(){
   fill(0);
   textSize(24);
   text("Menu", 100, 100);
+  textSize(12);
+  text("Seed:", 100, 150);
 }
 
 void drawGame(){
@@ -199,15 +200,39 @@ void turnMenuOn(){
   }
   inMenu = true;
   cp5.addButton("startGame")
-    .setPosition(100,200)
+    .setPosition(100,300)
     .setSize(100,100)
     .activateBy(ControlP5.RELEASE);
+  cp5.addTextfield("seed")
+    .setPosition(100,160);
   drawMenu();
 }
 
 void turnMenuOff(){
+  checkMenu();
   inMenu = false;
   cp5.getController("startGame").remove();
+  cp5.getController("seed").remove();
+}
+
+void checkMenu(){
+  String strSeed = cp5.get(Textfield.class, "seed").getText();
+  try {
+    seed = Integer.parseInt(strSeed);
+    rand = new Random(seed);
+    System.out.println(seed);
+  }catch(Exception e){}
+  setUpAgent();
+}
+
+void setUpAgent(){
+  switch(agentIndex){
+    case 0: curA = new SimpleLearner(rand); break;
+    case 1: curA = new SpeedDemon(rand); break;
+    case 2: curA = new SpeedDemonWExploration(rand); break;
+    case 3: curA = new RewardAndPunishmentLearner(rand); break;
+    case 4: curA = new RewardAndPunishmentLearner2(rand); break;
+  }
 }
 
 void turnGameOn(){
