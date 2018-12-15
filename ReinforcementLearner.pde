@@ -195,16 +195,27 @@ void updateInfo(){
 }
 
 void turnMenuOn(){
+  
   if(inGame){
     turnGameOff();
   }
+  
   inMenu = true;
+  
   cp5.addButton("startGame")
     .setPosition(100,300)
     .setSize(100,100)
     .activateBy(ControlP5.RELEASE);
+    
   cp5.addTextfield("seed")
     .setPosition(100,160);
+  
+  List agentTypes = Arrays.asList("Simple Learner", "Speed Demon", "Speed Demon with Exploration",
+    "Reward and Punishment Learner", "Exponential Learner");
+  cp5.addScrollableList("whichAgent")
+    .setPosition(100,200)
+    .addItems(agentTypes);
+    
   drawMenu();
 }
 
@@ -213,6 +224,7 @@ void turnMenuOff(){
   inMenu = false;
   cp5.getController("startGame").remove();
   cp5.getController("seed").remove();
+  cp5.getController("whichAgent").remove();
 }
 
 void checkMenu(){
@@ -222,6 +234,7 @@ void checkMenu(){
     rand = new Random(seed);
     System.out.println(seed);
   }catch(Exception e){}
+  agentIndex = (int)(cp5.get(ScrollableList.class, "whichAgent").getValue());
   setUpAgent();
 }
 

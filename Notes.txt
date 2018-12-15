@@ -83,3 +83,4 @@ Added a menu to the game
 	Added textfield to seed
 		Involved reworking some of the setup process
 		Added checkMenu() and setUpAgent()
+	Added scrollable list to choose agent
