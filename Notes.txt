@@ -76,3 +76,7 @@ Added a menu to the game
 	Made separate drawGame() and gameLoop() systems for what it has been so far
 		I know it's not really a "game," but roll with it
 	Added a set of booleans to indicate which state we're in
+	Added a button on the menu to go to the game
+	Added a button on the game to return to the menu
+		Made a partial reset function
+		Need to add reset options to all agents

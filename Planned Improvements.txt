@@ -31,3 +31,4 @@ Pillbug demonstration
 	Make boxes so small as to appear continuous
 	Maybe actually make continuous
 Change toString to use scientific notation
+Add reset for all agents

@@ -17,12 +17,12 @@ Random rand;
 ControlP5 cp5;
 boolean inMenu;
 boolean inGame;
-int tempCounter = 0;
 
 void setup(){
   size(600,800);
   
-  //Sets the menu mode on
+  //Sets the menu mode
+  cp5 = new ControlP5(this);
   turnMenuOn();
 
   //initializes start and goal points and position
@@ -58,14 +58,9 @@ void setup(){
 }
 
 void draw(){
-  
   //Makes the menu do its thing
   if(inMenu){
-    tempCounter++;
     drawMenu();
-    if (tempCounter>100){
-        turnGameOn();
-    }
   }
   
   //Makes the game do its thing
@@ -77,7 +72,6 @@ void draw(){
     drawGame();
     delay(100);  //Delay necessary to animate
   }
-  
 }
 
 void gameLoop(){
@@ -99,25 +93,25 @@ void gameLoop(){
         if (position[1]!=0){       //If it doesn't hit wall
           position[1]--;
         }else{                     //If it hits wall
-          punish();
+          punishForWall();
         }break;
       case 'd': 
         if (position[1]!=7){
           position[1]++;
         }else{                     
-          punish();
+          punishForWall();
         }break;
       case 'l': 
         if (position[0]!=0){
           position[0]--;
         }else{                     
-          punish();
+          punishForWall();
         }break;
       case 'r': 
         if (position[0]!=7){
           position[0]++;
         }else{                     
-          punish();
+          punishForWall();
         }break;
     }
   }
@@ -129,7 +123,7 @@ void gameLoop(){
   timeTaken++;
 }
 
-void punish(){
+void punishForWall(){
   curA.reward(timeTaken, -1, false);
 }
 
@@ -146,6 +140,7 @@ void rewardForGoal(){
 }
 
 void drawMenu(){
+  background(255);
   fill(0);
   textSize(24);
   text("Menu", 100, 100);
@@ -199,11 +194,54 @@ void updateInfo(){
 }
 
 void turnMenuOn(){
+  if(inGame){
+    turnGameOff();
+  }
   inMenu = true;
-  inGame = false;
+  cp5.addButton("startGame")
+    .setPosition(100,200)
+    .setSize(100,100)
+    .activateBy(ControlP5.RELEASE);
+  drawMenu();
+}
+
+void turnMenuOff(){
+  inMenu = false;
+  cp5.getController("startGame").remove();
 }
 
 void turnGameOn(){
-  inMenu = false;
+  if(inMenu){
+    turnMenuOff();
+  }
   inGame = true;
+  cp5.addButton("backToMenu")
+    .setPosition(100, 500)
+    .setSize(100,100)
+    .activateBy(ControlP5.RELEASE);
+  drawGame();
+}
+
+void turnGameOff(){
+  inGame = false;
+  cp5.getController("backToMenu").remove();
+  totalReset();
+}
+
+void startGame(int value){
+  turnGameOn();
+}
+
+void backToMenu(int value){
+  turnMenuOn();
+}
+
+void totalReset(){
+  position[0] = start[0];
+  position[1] = start[1];
+  numTrials = 1;
+  timeTaken = 0;
+  info = "";
+  shouldDelay = false;
+  rand = new Random(seed);
 }
