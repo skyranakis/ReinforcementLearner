@@ -84,3 +84,6 @@ Added a menu to the game
 		Involved reworking some of the setup process
 		Added checkMenu() and setUpAgent()
 	Added scrollable list to choose agent
+	Cleaned up agent selection
+		Deleted a, agentIndex, seed, rand and made them only in the methods that they need to be
+	Agents reset automatically, since a new one is created whenever it goes back to game

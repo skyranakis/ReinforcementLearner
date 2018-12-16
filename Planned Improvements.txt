@@ -34,4 +34,3 @@ Pillbug demonstration
 	Maybe actually make continuous
 Change toString to use scientific notation
 Add reset for all agents
-Menu

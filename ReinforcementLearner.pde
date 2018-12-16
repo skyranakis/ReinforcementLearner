@@ -2,8 +2,6 @@
 
 import controlP5.*;
 
-ArrayList<Agent> a;
-int agentIndex;
 int[] position;
 int[] start;
 int[] goal;
@@ -12,8 +10,6 @@ int numTrials;
 int timeTaken;
 String info;
 Agent curA;
-int seed;
-Random rand;
 ControlP5 cp5;
 boolean inMenu;
 boolean inGame;
@@ -36,23 +32,13 @@ void setup(){
   timeTaken = 0;
   info = "";
   shouldDelay = false;
-
-  seed = 0;
-  rand = new Random(seed);
   
   //Sets the menu mode
   cp5 = new ControlP5(this);
   turnMenuOn();
   
-  //Creates and sets up the agents
-  a = new ArrayList<Agent>();
-  a.add(new SimpleLearner(rand));  //0
-  a.add(new SpeedDemon(rand));  //1
-  a.add(new SpeedDemonWExploration(rand));  //2
-  a.add(new RewardAndPunishmentLearner(rand));  //3
-  a.add(new RewardAndPunishmentLearner2(rand));  //4
-  agentIndex = 4;  //Determines which agent to use
-  curA = a.get(agentIndex);
+  //Creates default agent
+  curA = new SimpleLearner(new Random(0));
   
 }
 
@@ -228,17 +214,18 @@ void turnMenuOff(){
 }
 
 void checkMenu(){
+  Random rand = new Random(0);
   String strSeed = cp5.get(Textfield.class, "seed").getText();
   try {
-    seed = Integer.parseInt(strSeed);
+    int seed = Integer.parseInt(strSeed);
     rand = new Random(seed);
     System.out.println(seed);
   }catch(Exception e){}
-  agentIndex = (int)(cp5.get(ScrollableList.class, "whichAgent").getValue());
-  setUpAgent();
+  int agentIndex = (int)(cp5.get(ScrollableList.class, "whichAgent").getValue());
+  setUpAgent(agentIndex, rand);
 }
 
-void setUpAgent(){
+void setUpAgent(int agentIndex, Random rand){
   switch(agentIndex){
     case 0: curA = new SimpleLearner(rand); break;
     case 1: curA = new SpeedDemon(rand); break;
@@ -281,5 +268,4 @@ void totalReset(){
   timeTaken = 0;
   info = "";
   shouldDelay = false;
-  rand = new Random(seed);
 }

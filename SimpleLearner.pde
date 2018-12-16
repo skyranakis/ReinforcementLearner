@@ -15,6 +15,7 @@ public class SimpleLearner implements Agent
 {
   Map<String,Double> model;    //Will drive decisions
   String mem;                    //Path to remember
+  Random rand;
   
   //Default Constructor
   public SimpleLearner(Random r){
