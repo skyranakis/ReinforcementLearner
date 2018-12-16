@@ -87,3 +87,8 @@ Added a menu to the game
 	Cleaned up agent selection
 		Deleted a, agentIndex, seed, rand and made them only in the methods that they need to be
 	Agents reset automatically, since a new one is created whenever it goes back to game
+Added header with seed and agent
+Fixed the start game button
+	Previously, it couldn't be clicked unless the scrollbar was up
+	Just moved it, now it's fixed
+3.5 hours

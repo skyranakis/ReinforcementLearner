@@ -9,6 +9,7 @@ boolean shouldDelay;
 int numTrials;
 int timeTaken;
 String info;
+String header;
 Agent curA;
 ControlP5 cp5;
 boolean inMenu;
@@ -137,6 +138,7 @@ void drawGame(){
   drawMap();
   drawAgent();
   drawInfo();
+  drawHeader();
 }
 
 void drawMap(){
@@ -171,7 +173,13 @@ void drawAgent(){
 void drawInfo(){
   fill(0);
   textSize(8);
-  text(info, 410, 10);
+  text(info, 410, 50);
+}
+
+void drawHeader(){
+  fill(0);
+  textSize(12);
+  text(header, 410, 10);
 }
 
 void updateInfo(){
@@ -189,7 +197,7 @@ void turnMenuOn(){
   inMenu = true;
   
   cp5.addButton("startGame")
-    .setPosition(100,300)
+    .setPosition(300,200)
     .setSize(100,100)
     .activateBy(ControlP5.RELEASE);
     
@@ -214,15 +222,15 @@ void turnMenuOff(){
 }
 
 void checkMenu(){
-  Random rand = new Random(0);
+  int seed = 0;
   String strSeed = cp5.get(Textfield.class, "seed").getText();
   try {
-    int seed = Integer.parseInt(strSeed);
-    rand = new Random(seed);
-    System.out.println(seed);
+    seed = Integer.parseInt(strSeed);
   }catch(Exception e){}
+  Random rand = new Random(seed);
   int agentIndex = (int)(cp5.get(ScrollableList.class, "whichAgent").getValue());
   setUpAgent(agentIndex, rand);
+  makeHeader(seed);
 }
 
 void setUpAgent(int agentIndex, Random rand){
@@ -233,6 +241,12 @@ void setUpAgent(int agentIndex, Random rand){
     case 3: curA = new RewardAndPunishmentLearner(rand); break;
     case 4: curA = new RewardAndPunishmentLearner2(rand); break;
   }
+}
+
+void makeHeader(int seed){
+  header = "Seed:\t" + seed + "\n";
+  ScrollableList scroll = cp5.get(ScrollableList.class, "whichAgent");
+  header += "Agent:\t" + scroll.getItem((int)(scroll.getValue())).get("text");
 }
 
 void turnGameOn(){
