@@ -92,3 +92,7 @@ Fixed the start game button
 	Previously, it couldn't be clicked unless the scrollbar was up
 	Just moved it, now it's fixed
 3.5 hours
+
+12/18/18
+Added to and rearranged Planned Improvements
+	Roughly in order now

@@ -1,6 +1,3 @@
-Metric for success of different agents
-	Expected value of model
-	Time to reach optimal model
 Map reading system
 	Update display map
 		Use squares instead of lines
@@ -9,7 +6,7 @@ Map reading system
 	Update bounds for going out of bounds
 New, more interesting maps
 	Map maker
-Better info display system
+Copy Minds
 Checkpoints in map
 Model with understanding of position
 Model with understanding of current and surrounding squares
@@ -17,19 +14,24 @@ Model that can stay
 	To help build towards Labyrinth AI
 	To demonstrate wireheading
 	Include in constructors allowed move
+Better info display system
+	Change toString to use scientific notation
 Pure punishment
-Actual Interface
 Document properly
 	Comments
 	Modularity
 	Fix strings in map (don't be lazy)
 	Make softReset public and remove from reward
+Metric for success of different agents
+	Expected value of model
+	Time to reach optimal model
 Handle overflows in RP2
 Find interesting seeds
 Pillbug demonstration
 	Give orientation
 	Make boxes so small as to appear continuous
 	Maybe actually make continuous
-Change toString to use scientific notation
 Add reset for all agents
 Make menu look better
+Ecosystem? See notebook
+Multiple agents?
