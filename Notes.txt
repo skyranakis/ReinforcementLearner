@@ -110,3 +110,4 @@ Implemented GameMap
 	Added drawSquare()
 	Changed drawAgent()
 		Consider synchronizing squareSize between drawMap() and drawaAgent()
+	Changed gameLoop() and handleReachingGoal() and eliminated rewardForGoal()

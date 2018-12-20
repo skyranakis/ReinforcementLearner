@@ -74,25 +74,25 @@ void gameLoop(){
     
     switch (c){
       case 'u': 
-        if (position[1]!=0){       //If it doesn't hit wall
+        if (position[1]!=1){       //If it doesn't hit wall
           position[1]--;
         }else{                     //If it hits wall
           punishForWall();
         }break;
       case 'd': 
-        if (position[1]!=7){
+        if (position[1]!=8){
           position[1]++;
         }else{                     
           punishForWall();
         }break;
       case 'l': 
-        if (position[0]!=0){
+        if (position[0]!=1){
           position[0]--;
         }else{                     
           punishForWall();
         }break;
       case 'r': 
-        if (position[0]!=7){
+        if (position[0]!=8){
           position[0]++;
         }else{                     
           punishForWall();
@@ -101,7 +101,7 @@ void gameLoop(){
   }
   
   //Handles agent reaching goal
-  if ((position[0] == goal[0]) && (position[1] == goal[1])){
+  if (map.isGoal(position[0], position[1])){
     handleReachingGoal();
   }
   timeTaken++;
@@ -112,15 +112,11 @@ void punishForWall(){
 }
 
 void handleReachingGoal(){
-  rewardForGoal();
+  curA.reward(timeTaken, map.getReward(position[0], position[1]), true);
   shouldDelay = true;
   updateInfo();
   numTrials++;
   timeTaken = 0;
-}
-
-void rewardForGoal(){
-  curA.reward(timeTaken, 10, true);
 }
 
 void drawMenu(){
