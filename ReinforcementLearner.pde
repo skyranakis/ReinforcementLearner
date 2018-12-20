@@ -22,7 +22,6 @@ void setup(){
   //initializes start and goal points and position
   map = new GameMap();
   start = map.getStartPosition();
-  print(start[0] + " " + start[1] + "\n");
   position = new int[2];
   position[0] = start[0];
   position[1] = start[1];
@@ -80,30 +79,37 @@ void gameLoop(){
           curA.reward(timeTaken, map.getReward(position[0], position[1]-1), false);
         }
         curA.reward(timeTaken, map.getReward(position), false);
+        print(map.getReward(position));
         break;
       case 'd': 
-        if (position[1]!=8){
+        if (map.isEnterable(position[0], position[1]+1)){       //If it doesn't hit wall
           position[1]++;
-        }else{                     
-          punishForWall();
-        }break;
+        }else{                     //If it hits wall
+          curA.reward(timeTaken, map.getReward(position[0], position[1]+1), false);
+        }
+        curA.reward(timeTaken, map.getReward(position), false);
+        break;
       case 'l': 
-        if (position[0]!=1){
+        if (map.isEnterable(position[0]-1, position[1])){       //If it doesn't hit wall
           position[0]--;
-        }else{                     
-          punishForWall();
-        }break;
+        }else{                     //If it hits wall
+          curA.reward(timeTaken, map.getReward(position[0]-1, position[1]), false);
+        }
+        curA.reward(timeTaken, map.getReward(position), false);
+        break;
       case 'r': 
-        if (position[0]!=8){
+        if (map.isEnterable(position[0]+1, position[1])){       //If it doesn't hit wall
           position[0]++;
-        }else{                     
-          punishForWall();
-        }break;
+        }else{                     //If it hits wall
+          curA.reward(timeTaken, map.getReward(position[0]+1, position[1]), false);
+        }
+        curA.reward(timeTaken, map.getReward(position), false);
+        break;
     }
   }
   
   //Handles agent reaching goal
-  if (map.isGoal(position[0], position[1])){
+  if (map.isGoal(position)){
     handleReachingGoal();
   }
   timeTaken++;
@@ -114,7 +120,7 @@ void punishForWall(){
 }
 
 void handleReachingGoal(){
-  curA.reward(timeTaken, map.getReward(position[0], position[1]), true);
+  curA.reward(timeTaken, map.getReward(position), true);
   shouldDelay = true;
   updateInfo();
   numTrials++;

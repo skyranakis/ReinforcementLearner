@@ -21,8 +21,10 @@ public class RewardAndPunishmentLearner2 extends RewardAndPunishmentLearner
       }
 
       double currentVal = model.get(""+curChar);
-      double newVal = currentVal * (1 + (reward / len) ) + 0.0001;  //Exponential improvement, not linear (0.0001 to avoid 0s)
-      model.put(""+curChar, newVal); 
+      double newVal = currentVal * (1 + (reward / len) );
+      if (newVal != 0){
+        model.put(""+curChar, newVal); 
+      }
       updateTValue();
       
     }

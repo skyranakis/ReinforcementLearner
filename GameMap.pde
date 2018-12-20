@@ -30,7 +30,11 @@ public class GameMap
   }
   
   public String getType(int row, int col){
-    return(map[row][col]);
+    return map[row][col];
+  }
+  
+  public String getType(int[] pos){
+    return getType(pos[0], pos[1]);
   }
   
   public boolean isEnterable(int row, int col){
@@ -40,6 +44,10 @@ public class GameMap
     }else{
       return true;
     }
+  }
+  
+  public boolean isEnterable(int[] pos){
+    return isEnterable(pos[0], pos[1]);
   }
   
   public double getReward(int row, int col){
@@ -63,6 +71,10 @@ public class GameMap
   
   public boolean isGoal(int row, int col){
     return map[row][col].equals("Goal");
+  }
+  
+  public boolean isGoal(int[] pos){
+    return isGoal(pos[0], pos[1]);
   }
   
   public int[] getSize(){

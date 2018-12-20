@@ -1,9 +1,5 @@
-Map reading system
-	Update display map
-		Use squares instead of lines
-	Update agent
-		Especially size
-	Update bounds for going out of bounds
+Make sure 0 reward never matters
+Read maps from text files
 New, more interesting maps
 	Map maker
 Copy Minds

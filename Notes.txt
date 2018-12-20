@@ -114,3 +114,11 @@ Implemented GameMap
 About 2 hours at this point
 	Added new getReward() that accepts an int array, then calls the original getReward() with the first two values
 	Started fixing wall code before computer ran out of battery.
+Made polymorphisms of all methods in GameMap that previously needed a row and column so that they now just need a position
+Changed wall-handling code in gameLoop()
+	Seems to work fine
+	Doesn't work the same with the same seeds
+	Rewarding 0 should never do anything, right?
+	Diverges where it hits the wall (obviously)
+	It was a result of a dumb thing I did in Exponential Learner, fixed now
+		Still different from original
