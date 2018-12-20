@@ -14,17 +14,15 @@ Agent curA;
 ControlP5 cp5;
 boolean inMenu;
 boolean inGame;
+GameMap map;
 
 void setup(){
   size(600,800);
 
   //initializes start and goal points and position
-  start = new int[2];
-  start[0] = 0;
-  start[1] = 0;
-  goal = new int[2];
-  goal[0] = 7;
-  goal[1] = 7;
+  map = new GameMap();
+  start = map.getStartPosition();
+  print(start[0] + " " + start[1] + "\n");
   position = new int[2];
   position[0] = start[0];
   position[1] = start[1];
@@ -143,31 +141,42 @@ void drawGame(){
 
 void drawMap(){
   background(255,255,255);
-  line(0,50, 400,50);
-  line(0,100, 400,100);
-  line(0,150, 400,150);
-  line(0,200, 400,200);
-  line(0,250, 400,250);
-  line(0,300, 400,300);
-  line(0,350, 400,350);
-  line(0,400, 400,400);
-  line(50,0, 50,400);
-  line(100,0, 100,400);
-  line(150,0, 150,400);
-  line(200,0, 200,400);
-  line(250,0, 250,400);
-  line(300,0, 300,400);
-  line(350,0, 350,400);
-  line(400,0, 400,400);
-  fill(255,0,0);
-  rect(start[0]*50, start[1]*50, 50, 50);
-  fill(0,255,0);
-  rect(goal[0]*50, goal[1]*50, 50, 50);
+  int[] size = map.getSize();
+  int squareSize = 400/Math.max(size[0], size[1]);
+  for (int r = 0; r < size[0]; r++){
+    for (int c = 0; c < size[1]; c++){
+      String type = map.getType(r,c);
+      drawSquare(type, r, c, squareSize);
+    }
+  }
+}
+
+void drawSquare(String type, int r, int c, int size){
+  if (type.equals("Wall")){
+    stroke(0, 0, 0);
+    fill(0, 0, 0);
+  }else if (type.equals("Normal")){
+    stroke(0, 0, 0);
+    fill(255, 255, 255);
+  }else if (type.equals("Start")){
+    stroke(0, 0, 0);
+    fill(255, 0, 0);
+  }else if (type.equals("Goal")){
+    stroke(0, 0, 0);
+    fill(0, 255, 0);
+  }else{
+    stroke(0, 0, 0);
+    fill(255, 0, 255);
+  }
+  rect(r*size, c*size, size, size);
 }
 
 void drawAgent(){
+  int[] mapSize = map.getSize();
+  int squareSize = 400/Math.max(mapSize[0], mapSize[1]);
+  int agentSize = squareSize*7/10;
   fill(0,0,255);
-  ellipse(position[0]*50+25, position[1]*50+25, 30, 30);
+  ellipse(position[0]*squareSize+squareSize/2, position[1]*squareSize+squareSize/2, agentSize, agentSize);
 }
 
 void drawInfo(){

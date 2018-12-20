@@ -1,15 +1,16 @@
 public class GameMap
 {
   private String[][] map;
+  private int[] startPosition;
   
   //Default constructor, makes 8x8 with start in top left and goal in botom right
   public GameMap(){
     map = new String[10][10];
     for (int i = 0; i < 10; i++){
       map[i][0] = "Wall";
-      map[i][10] = "Wall";
+      map[i][9] = "Wall";
       map[0][i] = "Wall";
-      map[10][i] = "Wall";
+      map[9][i] = "Wall";
     }
     for (int i = 1; i < 9; i++){
       for (int j = 1; j < 9; j++){
@@ -17,7 +18,10 @@ public class GameMap
       }
     }
     map[1][1] = "Start";
-    map[9][9] = "End";
+    startPosition = new int[2];
+    startPosition[0] = 1;
+    startPosition[1] = 1;
+    map[8][8] = "Goal";
   }
   
   //Constructor that reads in file containing map
@@ -57,7 +61,14 @@ public class GameMap
     return map[row][col].equals("Goal");
   }
   
-  public int getSize(){
-    return Math.max(map.length, map[0].length);
+  public int[] getSize(){
+    int[] size = new int[2];
+    size[0] = map.length;
+    size[1] = map[0].length;
+    return size;
+  }
+  
+  public int[] getStartPosition(){
+    return startPosition;
   }
 }

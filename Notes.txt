@@ -102,3 +102,11 @@ RewardAndPunishment seed 1 takes a while.
 Added GameMap method
 	Default is 8x8
 	isEnterable(), getReward(), getType(), getSize(), isGoal()
+	getStartPosition() and startPosition added
+	getSize() changed to return height and width, not the maximum size
+Implemented GameMap
+	Changed setup()
+	Changed drawMap()
+	Added drawSquare()
+	Changed drawAgent()
+		Consider synchronizing squareSize between drawMap() and drawaAgent()
