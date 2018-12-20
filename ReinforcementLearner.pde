@@ -74,11 +74,13 @@ void gameLoop(){
     
     switch (c){
       case 'u': 
-        if (position[1]!=1){       //If it doesn't hit wall
+        if (map.isEnterable(position[0], position[1]-1)){       //If it doesn't hit wall
           position[1]--;
         }else{                     //If it hits wall
-          punishForWall();
-        }break;
+          curA.reward(timeTaken, map.getReward(position[0], position[1]-1), false);
+        }
+        curA.reward(timeTaken, map.getReward(position), false);
+        break;
       case 'd': 
         if (position[1]!=8){
           position[1]++;

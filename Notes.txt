@@ -111,3 +111,6 @@ Implemented GameMap
 	Changed drawAgent()
 		Consider synchronizing squareSize between drawMap() and drawaAgent()
 	Changed gameLoop() and handleReachingGoal() and eliminated rewardForGoal()
+About 2 hours at this point
+	Added new getReward() that accepts an int array, then calls the original getReward() with the first two values
+	Started fixing wall code before computer ran out of battery.

@@ -57,6 +57,10 @@ public class GameMap
     }
   }
   
+  public double getReward(int[] pos){
+    return getReward(pos[0], pos[1]);
+  }
+  
   public boolean isGoal(int row, int col){
     return map[row][col].equals("Goal");
   }
