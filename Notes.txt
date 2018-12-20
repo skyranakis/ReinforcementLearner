@@ -96,3 +96,9 @@ Fixed the start game button
 12/18/18
 Added to and rearranged Planned Improvements
 	Roughly in order now
+
+12/20/18
+RewardAndPunishment seed 1 takes a while.
+Added GameMap method
+	Default is 8x8
+	isEnterable(), getReward(), getType(), getSize(), isGoal()
