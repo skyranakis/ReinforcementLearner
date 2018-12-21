@@ -28,13 +28,32 @@ public class GameMap
   //Constructor that reads in file containing map
   public GameMap(String filename){
     try{
-      filename = "Maps\\Basic4by4.txt";
-      String[] lines = loadStrings(filename);
-      print(lines[0] + "\n");
-    }catch(Exception e){print(e + "\n");}
-    GameMap gm = new GameMap();
+      String[] read = loadStrings(filename);
+      
+      String[] sizeLine = read[0].split("\\s*,\\s*");
+      int[] size = new int[2];
+      size[0] = Integer.parseInt(sizeLine[0]);
+      size[1] = Integer.parseInt(sizeLine[1]);
+      
+      String[] startLine = read[1].split("\\s*,\\s*");
+      startPosition = new int[2];
+      startPosition[0] = Integer.parseInt(startLine[0]);
+      startPosition[1] = Integer.parseInt(startLine[1]);
+      
+      map = new String[size[0]][size[1]];
+      for (int r = 2; r < size[0] + 2; r++){
+        String[] squares = read[r].split("\\s*,\\s*");
+        for (int c = 0; c < size[1]; c++){
+          map[r-2][c] = squares[c];
+        }
+      }
+      
+    }catch(Exception e){
+      print(e + "\n");
+      GameMap gm = new GameMap();
     this.map = gm.map;
     this.startPosition = gm.startPosition;
+    }
   }
   
   public String getType(int row, int col){

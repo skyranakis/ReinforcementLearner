@@ -20,7 +20,7 @@ void setup(){
   size(600,800);
 
   //initializes start and goal points and position
-  map = new GameMap("");
+  map = new GameMap("Maps\\Basic4by4.txt");
   start = map.getStartPosition();
   position = new int[2];
   position[0] = start[0];

@@ -1,6 +1,6 @@
 Make sure 0 reward never matters
-Read maps from text files
 Write maps to text files
+Dropdown to choose map
 Level editor
 New, more interesting maps
 Copy Minds

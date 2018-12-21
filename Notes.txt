@@ -124,3 +124,4 @@ Changed wall-handling code in gameLoop()
 		Still different from original
 Reading maps from text file
 	Got files to open right eventually
+	Got reading to work right
