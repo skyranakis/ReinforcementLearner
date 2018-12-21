@@ -51,9 +51,23 @@ public class GameMap
     }catch(Exception e){
       print(e + "\n");
       GameMap gm = new GameMap();
-    this.map = gm.map;
-    this.startPosition = gm.startPosition;
+      this.map = gm.map;
+      this.startPosition = gm.startPosition;
     }
+    
+  }
+  
+  public void writeMap(String filename) throws Exception{
+    PrintWriter writer = createWriter(filename);
+    writer.println(map.length + ", " + map[0].length);
+    writer.println(startPosition[0] + ", " + startPosition[1]);
+    for (int r = 0; r < map.length; r++){
+      for (int c = 0; c < map[0].length; c++){
+        writer.print(map[r][c] + ", ");
+      }
+      writer.println();
+    }
+    writer.close();
   }
   
   public String getType(int row, int col){

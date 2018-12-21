@@ -125,3 +125,5 @@ Changed wall-handling code in gameLoop()
 Reading maps from text file
 	Got files to open right eventually
 	Got reading to work right
+	Got writing to work right
+About 2 additional hours for 4 total today

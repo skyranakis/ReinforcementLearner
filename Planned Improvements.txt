@@ -1,5 +1,4 @@
 Make sure 0 reward never matters
-Write maps to text files
 Dropdown to choose map
 Level editor
 New, more interesting maps
