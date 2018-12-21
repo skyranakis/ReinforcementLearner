@@ -1,7 +1,8 @@
 public class GameMap
 {
-  private String[][] map;
-  private int[] startPosition;
+  //Make private!
+  public String[][] map;
+  public int[] startPosition;
   
   //Default constructor, makes 8x8 with start in top left and goal in botom right
   public GameMap(){
@@ -26,7 +27,14 @@ public class GameMap
   
   //Constructor that reads in file containing map
   public GameMap(String filename){
-    new GameMap();  //Replace later!
+    try{
+      filename = "Maps\\Basic4by4.txt";
+      String[] lines = loadStrings(filename);
+      print(lines[0] + "\n");
+    }catch(Exception e){print(e + "\n");}
+    GameMap gm = new GameMap();
+    this.map = gm.map;
+    this.startPosition = gm.startPosition;
   }
   
   public String getType(int row, int col){

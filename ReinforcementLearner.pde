@@ -20,7 +20,7 @@ void setup(){
   size(600,800);
 
   //initializes start and goal points and position
-  map = new GameMap();
+  map = new GameMap("");
   start = map.getStartPosition();
   position = new int[2];
   position[0] = start[0];
@@ -79,7 +79,6 @@ void gameLoop(){
           curA.reward(timeTaken, map.getReward(position[0], position[1]-1), false);
         }
         curA.reward(timeTaken, map.getReward(position), false);
-        print(map.getReward(position));
         break;
       case 'd': 
         if (map.isEnterable(position[0], position[1]+1)){       //If it doesn't hit wall

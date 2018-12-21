@@ -122,3 +122,5 @@ Changed wall-handling code in gameLoop()
 	Diverges where it hits the wall (obviously)
 	It was a result of a dumb thing I did in Exponential Learner, fixed now
 		Still different from original
+Reading maps from text file
+	Got files to open right eventually

@@ -1,7 +1,8 @@
 Make sure 0 reward never matters
 Read maps from text files
+Write maps to text files
+Level editor
 New, more interesting maps
-	Map maker
 Copy Minds
 Checkpoints in map
 Model with understanding of position
