@@ -24,7 +24,7 @@ void setup(){
   //initializes start and goal points and position
   //map = new GameMap("Maps\\Basic4by4.txt");
   //map = new GameMap();
-  map = new GameMap("Maps\\Basic8by8.txt");
+  map = new GameMap("Maps\\7by14.txt");
   start = map.getStartPosition();
   position = new int[2];
   position[0] = start[0];
@@ -148,6 +148,7 @@ void drawMenu(){
 }
 
 void drawGame(){
+  background(255);
   map.drawMap();
   drawAgent();
   drawInfo();
@@ -300,10 +301,15 @@ void levelEditor(int value){
   turnLevelEditorOn();
 }
 
-//Handles RETURNTOMENU button
+//Handles RETURNTOMENU button in LevelEditor
 //When I move this to LevelEditor, I get that weird ArrayIndexException again
 void returnToMenu(int value){
   turnMenuOn();
+}
+
+//Passes handling og SAVEMAP button in LevelEditor to a method in LevelEdito (with access to the map)
+void saveMap(int value){
+  lE.actuallySaveMap();
 }
 
 void totalReset(){

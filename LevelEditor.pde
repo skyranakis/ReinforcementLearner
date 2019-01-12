@@ -23,7 +23,12 @@ public class LevelEditor
   public void start(){
     
     cp5.addButton("returnToMenu")
-      .setPosition(450,450)
+      .setPosition(450,550)
+      .setSize(100,100)
+      .activateBy(ControlP5.RELEASE);
+      
+    cp5.addButton("saveMap")
+      .setPosition(450,400)
       .setSize(100,100)
       .activateBy(ControlP5.RELEASE);
       
@@ -54,6 +59,7 @@ public class LevelEditor
   
   public void end(){
     cp5.getController("returnToMenu").remove();
+    cp5.getController("saveMap").remove();
     cp5.getController("levelName").remove();
     cp5.getController("width").remove();
     cp5.getController("height").remove();
@@ -92,6 +98,13 @@ public class LevelEditor
       newMap = new GameMap(w, h);
     }
     
+  }
+  
+  //Actually handles SAVEMAP button
+  public void actuallySaveMap(){
+    try{
+      newMap.writeMap( "Maps/" + name + ".txt" );
+    }catch(Exception e){}
   }
   
 }
