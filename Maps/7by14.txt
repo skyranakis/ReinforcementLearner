@@ -1,0 +1,9 @@
+7, 14
+1, 1
+Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, 
+Wall, Start, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Wall, 
+Wall, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Wall, 
+Wall, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Wall, 
+Wall, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Wall, 
+Wall, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Normal, Goal, Wall, 
+Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, 

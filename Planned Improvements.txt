@@ -1,4 +1,6 @@
 Document file format rules
+Implement better copying system for GameMap and LevelEditor
+	Consider changing how one considers size of map (do mandatory edge wall count?)
 Make sure 0 reward never matters
 Dropdown to choose map
 Level editor

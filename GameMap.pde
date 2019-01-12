@@ -15,14 +15,16 @@ public class GameMap
   //Start in top left, goal in bottom right, no extra walls
   public GameMap(int w, int h){
     map = new String[w][h];
-    for (int i = 0; i < 10; i++){
-      map[i][0] = "Wall";
-      map[i][w-1] = "Wall";
+    for (int i = 0; i < h; i++){
       map[0][i] = "Wall";
-      map[h-1][i] = "Wall";
+      map[w-1][i] = "Wall";
     }
-    for (int i = 1; i < h-1; i++){
-      for (int j = 1; j < w-1; j++){
+    for (int i = 0; i < w; i++){
+      map[i][0] = "Wall";
+      map[i][h-1] = "Wall";
+    }
+    for (int i = 1; i < w-1; i++){
+      for (int j = 1; j < h-1; j++){
         map[i][j] = "Normal";
       }
     }
@@ -30,7 +32,7 @@ public class GameMap
     startPosition = new int[2];
     startPosition[0] = 1;
     startPosition[1] = 1;
-    map[h-2][w-2] = "Goal";
+    map[w-2][h-2] = "Goal";
   }
   
   //Constructor that reads in file containing map
@@ -79,7 +81,6 @@ public class GameMap
   }
   
   void drawMap(){
-    background(255,255,255);
     int[] size = getSize();
     int squareSize = 400/Math.max(size[0], size[1]);
     for (int r = 0; r < size[0]; r++){

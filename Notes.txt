@@ -135,3 +135,14 @@ Created LevelEditor
 		Had serious issues getting the ControlP5's to play nice
 		Should go back and move the gui to LevelEditor class if possible
 		Also had serious issues focusing. Took about 3 hours, probably worked half that, if that.
+	Had issues with TextFields in LevelEditor
+	Adjusted GameMap to prepare to work better with LevelEditor
+		Moved drawMap and drawSquare from ReinforcementLearner to GameMap
+		Made a new constructor in GameMap that takes width and height, changed default constructor to use that for 10,10
+		Made GameMap instance variables private
+		Added changeType
+	Got height, width, and name bars working properly
+	Got saving to work properly
+		Tested with 7by14
+		Noted that for RaPL, seed 0, 7x14, <r and d> and <u and l> are almost exactly the same until run #9
+		Even after 30, u is HIGHER than l
