@@ -148,42 +148,10 @@ void drawMenu(){
 }
 
 void drawGame(){
-  drawMap();
+  map.drawMap();
   drawAgent();
   drawInfo();
   drawHeader();
-}
-
-void drawMap(){
-  background(255,255,255);
-  int[] size = map.getSize();
-  int squareSize = 400/Math.max(size[0], size[1]);
-  for (int r = 0; r < size[0]; r++){
-    for (int c = 0; c < size[1]; c++){
-      String type = map.getType(r,c);
-      drawSquare(type, r, c, squareSize);
-    }
-  }
-}
-
-void drawSquare(String type, int r, int c, int size){
-  if (type.equals("Wall")){
-    stroke(0, 0, 0);
-    fill(0, 0, 0);
-  }else if (type.equals("Normal")){
-    stroke(0, 0, 0);
-    fill(255, 255, 255);
-  }else if (type.equals("Start")){
-    stroke(0, 0, 0);
-    fill(255, 0, 0);
-  }else if (type.equals("Goal")){
-    stroke(0, 0, 0);
-    fill(0, 255, 0);
-  }else{
-    stroke(0, 0, 0);
-    fill(255, 0, 255);
-  }
-  rect(r*size, c*size, size, size);
 }
 
 void drawAgent(){
@@ -307,21 +275,13 @@ void turnLevelEditorOn(){
     turnMenuOff();
   } else if(inGame){
     turnGameOff();
-  }
-    
-    //Debugging
-    cp5.addButton("returnToMenu")
-      .setPosition(500,200)
-      .setSize(100,100)
-      .activateBy(ControlP5.RELEASE);
-      
+  }     
   lE.start();
   inLevelEditor = true;
 }
 
 void turnLevelEditorOff(){
   lE.end();
-  cp5.getController("returnToMenu").remove();  //Debugging
   inLevelEditor = false;
 }
 
@@ -341,6 +301,7 @@ void levelEditor(int value){
 }
 
 //Handles RETURNTOMENU button
+//When I move this to LevelEditor, I get that weird ArrayIndexException again
 void returnToMenu(int value){
   turnMenuOn();
 }

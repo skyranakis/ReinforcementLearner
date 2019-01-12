@@ -1,20 +1,28 @@
 public class GameMap
 {
   //Make private!
-  public String[][] map;
-  public int[] startPosition;
+  private String[][] map;
+  private int[] startPosition;
   
   //Default constructor, makes 8x8 with start in top left and goal in botom right
   public GameMap(){
-    map = new String[10][10];
+    GameMap template = new GameMap(10,10);
+    map = template.map;
+    startPosition = template.startPosition;
+  }
+  
+  //Constructor for maps of a particular width (w) and height (h) (necessary for level creation)
+  //Start in top left, goal in bottom right, no extra walls
+  public GameMap(int w, int h){
+    map = new String[w][h];
     for (int i = 0; i < 10; i++){
       map[i][0] = "Wall";
-      map[i][9] = "Wall";
+      map[i][w-1] = "Wall";
       map[0][i] = "Wall";
-      map[9][i] = "Wall";
+      map[h-1][i] = "Wall";
     }
-    for (int i = 1; i < 9; i++){
-      for (int j = 1; j < 9; j++){
+    for (int i = 1; i < h-1; i++){
+      for (int j = 1; j < w-1; j++){
         map[i][j] = "Normal";
       }
     }
@@ -22,7 +30,7 @@ public class GameMap
     startPosition = new int[2];
     startPosition[0] = 1;
     startPosition[1] = 1;
-    map[8][8] = "Goal";
+    map[h-2][w-2] = "Goal";
   }
   
   //Constructor that reads in file containing map
@@ -68,6 +76,66 @@ public class GameMap
       writer.println();
     }
     writer.close();
+  }
+  
+  void drawMap(){
+    background(255,255,255);
+    int[] size = getSize();
+    int squareSize = 400/Math.max(size[0], size[1]);
+    for (int r = 0; r < size[0]; r++){
+      for (int c = 0; c < size[1]; c++){
+        String type = getType(r,c);
+        drawSquare(type, r, c, squareSize);
+      }
+    }
+  }
+
+  void drawSquare(String type, int r, int c, int size){
+    if (type.equals("Wall")){
+      stroke(0, 0, 0);
+      fill(0, 0, 0);
+    }else if (type.equals("Normal")){
+      stroke(0, 0, 0);
+      fill(255, 255, 255);
+    }else if (type.equals("Start")){
+      stroke(0, 0, 0);
+      fill(255, 0, 0);
+    }else if (type.equals("Goal")){
+      stroke(0, 0, 0);
+      fill(0, 255, 0);
+    }else{
+      stroke(0, 0, 0);
+      fill(255, 0, 255);
+    }
+    rect(r*size, c*size, size, size);
+  }
+  
+  public int changeType(int row, int col, String type){
+    //Don't change if out of bounds
+    if ( row < 0 || row > map.length - 1 || col < 0 || col > map[0].length - 1 ){
+      return 1; //Would have been out of bounds
+    }
+    //Don't change if on edge
+    if ( row == 0 || row == map.length - 1 || col == 0 || col == map[0].length - 1 ){
+      return 2; //Tried to change wall on edge
+    }
+    //Change if Wall, Normal, or Goal and none of the above apply
+    if ( type.equals("Wall") || type.equals("Normal")|| type.equals("Goal") ){
+      map[row][col] = type;
+      return 0; //All went well
+    }
+    if ( type.equals("Start") ){
+      map[row][col] = "Start";                                    //Set the new square as start
+      changeType(startPosition[0], startPosition[1], "Normal");   //Changes old start to Normal
+      startPosition[0] = row;                                     //Changes start position
+      startPosition[1] = col;
+      return 0; //All went well
+    }
+    return 3; //Invalid type
+  }
+  
+  public int changeType(int[] pos, String type){
+    return changeType(pos[0], pos[1], type);
   }
   
   public String getType(int row, int col){
