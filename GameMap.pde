@@ -82,7 +82,7 @@ public class GameMap
   
   void drawMap(){
     int[] size = getSize();
-    int squareSize = 400/Math.max(size[0], size[1]);
+    int squareSize = getSquareSize();
     for (int r = 0; r < size[0]; r++){
       for (int c = 0; c < size[1]; c++){
         String type = getType(r,c);
@@ -122,17 +122,21 @@ public class GameMap
     }
     //Change if Wall, Normal, or Goal and none of the above apply
     if ( type.equals("Wall") || type.equals("Normal")|| type.equals("Goal") ){
+      if (row == startPosition[0] && col == startPosition[1]){
+        return 3; //Tried to change start
+      }
       map[row][col] = type;
       return 0; //All went well
     }
+    //If changing start, move Start
     if ( type.equals("Start") ){
-      map[row][col] = "Start";                                    //Set the new square as start
       changeType(startPosition[0], startPosition[1], "Normal");   //Changes old start to Normal
+      map[row][col] = "Start";                                    //Set the new square as start
       startPosition[0] = row;                                     //Changes start position
       startPosition[1] = col;
       return 0; //All went well
     }
-    return 3; //Invalid type
+    return 4; //Invalid type
   }
   
   public int changeType(int[] pos, String type){
@@ -196,5 +200,9 @@ public class GameMap
   
   public int[] getStartPosition(){
     return startPosition;
+  }
+  
+  public int getSquareSize(){
+    return 400/Math.max(map.length, map[0].length);
   }
 }

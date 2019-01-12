@@ -146,3 +146,19 @@ Created LevelEditor
 		Tested with 7by14
 		Noted that for RaPL, seed 0, 7x14, <r and d> and <u and l> are almost exactly the same until run #9
 		Even after 30, u is HIGHER than l
+	Added actual box-changing functionality
+		Added a RadioButton, but did not implement it (it was 2:30 am)
+		Redesigned LevelEditor layout a bit
+		Added the mouse support to LevelEditor
+		Added getSquareSize() to GameMap
+		Moved most mouse support to Reinforcement Learner
+		Discovered that RETURNTOMENU now causes crash
+		Figured out that the RadioButton needs to be an instance variable in order to remove it properly
+		Made 8by8wL and Snek (3:20 am)
+		Actually implemented that RadioButton
+			Only works on drag, not click
+			Issues with Start - you can make the Start Square not "Start" and if the Start moves in a box, it turns itself into "Normal"
+			Eventually got it to actually work
+Noted: Reinforcement Learner, 7by14, Seed 0: Learns to go straight down, gets stuck in corner for a while, then shoots off to right
+	Why does it not keep trying to move down?
+	Similar behavior observed for Seed 1 and (eventually) Seed 2

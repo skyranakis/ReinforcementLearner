@@ -17,6 +17,7 @@ boolean inGame;
 boolean inLevelEditor;
 GameMap map;
 LevelEditor lE;
+boolean editing;
 
 void setup(){
   size(600,800);
@@ -39,6 +40,7 @@ void setup(){
   cp5 = new ControlP5(this);
   lE = new LevelEditor();
   turnMenuOn();
+  editing = false;
   //turnLevelEditorOn();  //Debugging
   
   //Creates default agent
@@ -319,4 +321,22 @@ void totalReset(){
   timeTaken = 0;
   info = "";
   shouldDelay = false;
+}
+
+//Makes it so that the boxes are changing whenever the mouse is down
+void mousePressed(){
+  editing = true;
+}
+  
+//Makes it so that when the mouse is released, the boxes aren't changing
+void mouseReleased(){
+  lE.tryToChange(mouseX, mouseY);
+  editing = false;
+}
+  
+//Handles mouse moving when the mouse is down
+void mouseDragged(){
+  if (editing){
+    lE.tryToChange(mouseX, mouseY);
+  }
 }

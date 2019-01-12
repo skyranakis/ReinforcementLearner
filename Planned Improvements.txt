@@ -8,6 +8,7 @@ Level editor
 New, more interesting maps
 Copy Minds
 Checkpoints in map
+Model that uses past move or two to decide
 Model with understanding of position
 Model with understanding of current and surrounding squares
 Model that can stay
@@ -36,3 +37,4 @@ Add reset for all agents
 Make menu look better
 Ecosystem? See notebook
 Multiple agents?
+Multiple starts? Disorientation, prevent memorization
