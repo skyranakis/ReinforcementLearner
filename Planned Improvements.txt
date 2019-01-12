@@ -9,6 +9,7 @@ New, more interesting maps
 Copy Minds
 Checkpoints in map
 Model that uses past move or two to decide
+	Make sure it knows whether it's hit a wall
 Model with understanding of position
 Model with understanding of current and surrounding squares
 Model that can stay

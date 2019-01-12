@@ -25,7 +25,7 @@ void setup(){
   //initializes start and goal points and position
   //map = new GameMap("Maps\\Basic4by4.txt");
   //map = new GameMap();
-  map = new GameMap("Maps\\7by14.txt");
+  map = new GameMap("Maps\\Snek.txt");
   start = map.getStartPosition();
   position = new int[2];
   position[0] = start[0];
@@ -330,13 +330,15 @@ void mousePressed(){
   
 //Makes it so that when the mouse is released, the boxes aren't changing
 void mouseReleased(){
-  lE.tryToChange(mouseX, mouseY);
+  if (editing && inLevelEditor){
+    lE.tryToChange(mouseX, mouseY);
+  }
   editing = false;
 }
   
 //Handles mouse moving when the mouse is down
 void mouseDragged(){
-  if (editing){
+  if (editing && inLevelEditor){
     lE.tryToChange(mouseX, mouseY);
   }
 }

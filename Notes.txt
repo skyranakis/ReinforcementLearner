@@ -162,3 +162,7 @@ Created LevelEditor
 Noted: Reinforcement Learner, 7by14, Seed 0: Learns to go straight down, gets stuck in corner for a while, then shoots off to right
 	Why does it not keep trying to move down?
 	Similar behavior observed for Seed 1 and (eventually) Seed 2
+5 more hours since I got it together, for a total of 8 today
+And now there's a NullPointerException is tryToChange
+	That was because of the mouseReleased and mouseDragged things I did... fixed now
+Snek doesn't seem to work well at all, at least not Exponential Learner Seed 1
