@@ -127,3 +127,11 @@ Reading maps from text file
 	Got reading to work right
 	Got writing to work right
 About 2 additional hours for 4 total today
+
+1/11/2019
+Noted: Exponential Learner with Seed 0 has very LOW numbers in  model
+Created LevelEditor
+	Got the two buttons on the two screens items to refer to each other
+		Had serious issues getting the ControlP5's to play nice
+		Should go back and move the gui to LevelEditor class if possible
+		Also had serious issues focusing. Took about 3 hours, probably worked half that, if that.

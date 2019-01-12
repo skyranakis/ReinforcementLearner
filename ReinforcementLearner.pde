@@ -14,7 +14,9 @@ Agent curA;
 ControlP5 cp5;
 boolean inMenu;
 boolean inGame;
+boolean inLevelEditor;
 GameMap map;
+LevelEditor lE;
 
 void setup(){
   size(600,800);
@@ -35,7 +37,9 @@ void setup(){
   
   //Sets the menu mode
   cp5 = new ControlP5(this);
+  lE = new LevelEditor();
   turnMenuOn();
+  //turnLevelEditorOn();  //Debugging
   
   //Creates default agent
   curA = new SimpleLearner(new Random(0));
@@ -57,6 +61,12 @@ void draw(){
     drawGame();
     delay(100);  //Delay necessary to animate
   }
+  
+  //Makes the level editor do its thing
+  else if(inLevelEditor){
+    lE.drawLevel();
+  }
+
 }
 
 void gameLoop(){
@@ -206,6 +216,8 @@ void turnMenuOn(){
   
   if(inGame){
     turnGameOff();
+  }else if(inLevelEditor){
+    turnLevelEditorOff();
   }
   
   inMenu = true;
@@ -213,6 +225,11 @@ void turnMenuOn(){
   cp5.addButton("startGame")
     .setPosition(300,200)
     .setSize(100,100)
+    .activateBy(ControlP5.RELEASE);
+    
+  cp5.addButton("levelEditor")
+    .setPosition(300, 310)
+    .setSize(100, 100)
     .activateBy(ControlP5.RELEASE);
     
   cp5.addTextfield("seed")
@@ -233,6 +250,7 @@ void turnMenuOff(){
   cp5.getController("startGame").remove();
   cp5.getController("seed").remove();
   cp5.getController("whichAgent").remove();
+  cp5.getController("levelEditor").remove();
 }
 
 void checkMenu(){
@@ -266,6 +284,8 @@ void makeHeader(int seed){
 void turnGameOn(){
   if(inMenu){
     turnMenuOff();
+  }else if(inLevelEditor){
+    turnLevelEditorOff();
   }
   inGame = true;
   cp5.addButton("backToMenu")
@@ -281,11 +301,47 @@ void turnGameOff(){
   totalReset();
 }
 
+//Turns on LevelEditor. Currently does NOT auto-reset when one goes to menu and back
+void turnLevelEditorOn(){
+  if(inMenu){
+    turnMenuOff();
+  } else if(inGame){
+    turnGameOff();
+  }
+    
+    //Debugging
+    cp5.addButton("returnToMenu")
+      .setPosition(500,200)
+      .setSize(100,100)
+      .activateBy(ControlP5.RELEASE);
+      
+  lE.start();
+  inLevelEditor = true;
+}
+
+void turnLevelEditorOff(){
+  lE.end();
+  cp5.getController("returnToMenu").remove();  //Debugging
+  inLevelEditor = false;
+}
+
+//Handles button presses for STARTGAME button in menu
 void startGame(int value){
   turnGameOn();
 }
 
+//Handles button presses for BACKTOMENU button in game
 void backToMenu(int value){
+  turnMenuOn();
+}
+
+//Handles button presses for LEVELEDITOR button in menu
+void levelEditor(int value){
+  turnLevelEditorOn();
+}
+
+//Handles RETURNTOMENU button
+void returnToMenu(int value){
   turnMenuOn();
 }
 

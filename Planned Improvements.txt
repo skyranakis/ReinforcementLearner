@@ -1,3 +1,4 @@
+Document file format rules
 Make sure 0 reward never matters
 Dropdown to choose map
 Level editor
@@ -18,6 +19,7 @@ Document properly
 	Modularity
 	Fix strings in map (don't be lazy)
 	Make softReset public and remove from reward
+	Different classes for menu and game
 Metric for success of different agents
 	Expected value of model
 	Time to reach optimal model
