@@ -25,7 +25,7 @@ void setup(){
   //initializes start and goal points and position
   //map = new GameMap("Maps\\Basic4by4.txt");
   //map = new GameMap();
-  map = new GameMap("Maps\\Snek.txt");
+  map = new GameMap("Maps\\LetterS.txt");
   start = map.getStartPosition();
   position = new int[2];
   position[0] = start[0];
@@ -211,6 +211,15 @@ void turnMenuOn(){
   cp5.addScrollableList("whichAgent")
     .setPosition(100,200)
     .addItems(agentTypes);
+  
+  String[] listOfNames = new String[0];
+  try{
+    listOfNames = loadStrings("MapList.txt");
+  }catch(Exception e){print(e);}
+  List mapNames = Arrays.asList(listOfNames);
+  cp5.addScrollableList("whichMap")
+    .setPosition(100,400)
+    .addItems(mapNames);
     
   drawMenu();
 }
@@ -222,17 +231,31 @@ void turnMenuOff(){
   cp5.getController("seed").remove();
   cp5.getController("whichAgent").remove();
   cp5.getController("levelEditor").remove();
+  cp5.getController("whichMap").remove();
 }
 
+//Makes sure that seed and agent and map are all up-to-date, and also calls makeHeader()
 void checkMenu(){
+  
+  //Gets seed
   int seed = 0;
   String strSeed = cp5.get(Textfield.class, "seed").getText();
   try {
     seed = Integer.parseInt(strSeed);
   }catch(Exception e){}
   Random rand = new Random(seed);
+  
+  //Gets agent
   int agentIndex = (int)(cp5.get(ScrollableList.class, "whichAgent").getValue());
   setUpAgent(agentIndex, rand);
+  
+  //Gets map
+  int mapIndex = (int)(cp5.get(ScrollableList.class, "whichMap").getValue());
+  Object oMapName = cp5.get(ScrollableList.class, "whichMap").getItem(mapIndex).get("text");
+  String mapName = oMapName.toString();
+  map = new GameMap("Maps/" + mapName + ".txt");
+  
+  //Makes the header
   makeHeader(seed);
 }
 

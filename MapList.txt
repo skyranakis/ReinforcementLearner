@@ -6,3 +6,4 @@ Reverse8by8
 Snek
 Island
 LetterS
+Trap1

@@ -24,6 +24,7 @@ Document properly
 	Fix strings in map (don't be lazy)
 	Make softReset public and remove from reward
 	Different classes for menu and game
+	Redo checkMenu() in ReinforcementLearner to only reset if an actual change was occurred
 Metric for success of different agents
 	Expected value of model
 	Time to reach optimal model

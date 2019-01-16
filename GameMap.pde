@@ -130,7 +130,7 @@ public class GameMap
     }
     //If changing start, move Start
     if ( type.equals("Start") ){
-      changeType(startPosition[0], startPosition[1], "Normal");   //Changes old start to Normal
+      map[startPosition[0]][startPosition[1]] = "Normal";         //Changes old start to Normal
       map[row][col] = "Start";                                    //Set the new square as start
       startPosition[0] = row;                                     //Changes start position
       startPosition[1] = col;

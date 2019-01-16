@@ -176,3 +176,8 @@ Implemented list of file names
 	Added message that the name was unavailable when appropriate in drawLevel()
 	Added to actuallySaveMap() to write to MapList.txt
 	List of file names works, but found a bug where changing Start doesn't properly un-Start the others
+Fixed a Bug regarding Start in the level editor
+Implemented dropdown list of maps
+	Added scrollableList whichMap in turnMenuOn() and removal code in turn MenuOff()
+	Added code to update map in checkMenu()
+	Changed map instantiated in setup() in ReinforcementLearner back to use the default constructor of GameMap, as it should

@@ -4,3 +4,8 @@ Changing the Start location doesn't make the other square normal, but startPosit
 Fixed 1/15/2019
 I had tried to use changeType() to change the old start to normal, but that method doesn't let one overwrite start.
 I just fixed it by changing the old start to normal manually in changeType()
+
+2:
+Noted 1/15/19
+Loading Basic4by4 and starting game immediately causes crash on first line of isEnterable() in GameMap
+	ArrayIndexOutOfBoundsException: 8
