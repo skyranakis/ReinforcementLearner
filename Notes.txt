@@ -166,3 +166,13 @@ Noted: Reinforcement Learner, 7by14, Seed 0: Learns to go straight down, gets st
 And now there's a NullPointerException is tryToChange
 	That was because of the mouseReleased and mouseDragged things I did... fixed now
 Snek doesn't seem to work well at all, at least not Exponential Learner Seed 1
+
+1/15/19
+To be clear, the last notes from the last session only took about 20 minutes, so still count it as 8 hours for that
+Implemented list of file names
+	Created MapList.txt
+	Created nameIsAvailable() in LevelEditor
+	Changed actuallySaveMap() in LevelEditor to make it only save when the name is available
+	Added message that the name was unavailable when appropriate in drawLevel()
+	Added to actuallySaveMap() to write to MapList.txt
+	List of file names works, but found a bug where changing Start doesn't properly un-Start the others

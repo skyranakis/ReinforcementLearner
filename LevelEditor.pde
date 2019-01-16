@@ -7,9 +7,9 @@ public class LevelEditor
     
   private GameMap newMap;
   private String name;
-  int w;
-  int h;
-  RadioButton rb;
+  private int w;
+  private int h;
+  private RadioButton rb;
   //ControlP5 lECP5;
   //PApplet mainObject;
   
@@ -60,6 +60,9 @@ public class LevelEditor
     textSize(12);
     text("Level Name:", 20, 522);
     text(name, 310, 522);
+    if (!nameIsAvailable()){
+      text(name + " is not an available name", 400, 522);
+    }
     text("Width:", 20, 552);
     text(w, 310, 552);
     text("Height:", 20, 582);
@@ -118,9 +121,19 @@ public class LevelEditor
   
   //Actually handles SAVEMAP button
   public void actuallySaveMap(){
-    try{
-      newMap.writeMap( "Maps/" + name + ".txt" );
-    }catch(Exception e){}
+    if (nameIsAvailable()){
+      try{
+        String savePath = "Maps/" + name + ".txt";
+        newMap.writeMap(savePath);
+        String[] listOfNames = loadStrings("MapList.txt");
+        PrintWriter writer = createWriter("MapList.txt");
+        for (String s:listOfNames){
+          writer.println(s);
+        }
+        writer.println(name); 
+        writer.close();
+      }catch(Exception e){}
+    }
   }
   
   public void tryToChange(int x, int y){
@@ -134,6 +147,18 @@ public class LevelEditor
       }
     }
     newMap.changeType(squareX, squareY, type);
+  }
+  
+  //Checks that the name is not the name of any existing map
+  public boolean nameIsAvailable(){
+    String[] listOfNames = loadStrings("MapList.txt");
+    boolean unavailable = true;
+    for (String s:listOfNames){
+      if (s.equals(name)){
+        unavailable = false;
+      }
+    }
+    return unavailable;
   }
   
 }

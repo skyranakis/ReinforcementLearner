@@ -1,0 +1,6 @@
+1:
+Noted 1/15/2019
+Changing the Start location doesn't make the other square normal, but startPosition does indeed change
+Fixed 1/15/2019
+I had tried to use changeType() to change the old start to normal, but that method doesn't let one overwrite start.
+I just fixed it by changing the old start to normal manually in changeType()
