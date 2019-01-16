@@ -1,6 +1,7 @@
 Make default map actually default map
 	Maybe only update map when scrollableList changes
 	Maybe temporary solution
+Database system for square types
 Let LevelEditor actually EDIT levels, instead of just creating them
 Document file format rules
 Implement better copying system for GameMap and LevelEditor

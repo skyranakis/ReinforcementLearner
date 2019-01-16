@@ -24,8 +24,7 @@ void setup(){
 
   //initializes start and goal points and position
   //map = new GameMap("Maps\\Basic4by4.txt");
-  //map = new GameMap();
-  map = new GameMap("Maps\\LetterS.txt");
+  map = new GameMap();
   start = map.getStartPosition();
   position = new int[2];
   position[0] = start[0];
@@ -249,11 +248,15 @@ void checkMenu(){
   int agentIndex = (int)(cp5.get(ScrollableList.class, "whichAgent").getValue());
   setUpAgent(agentIndex, rand);
   
-  //Gets map
+  //Gets map and resets location of agent
   int mapIndex = (int)(cp5.get(ScrollableList.class, "whichMap").getValue());
   Object oMapName = cp5.get(ScrollableList.class, "whichMap").getItem(mapIndex).get("text");
   String mapName = oMapName.toString();
   map = new GameMap("Maps/" + mapName + ".txt");
+  start = map.getStartPosition();
+  position = new int[2];
+  position[0] = start[0];
+  position[1] = start[1];
   
   //Makes the header
   makeHeader(seed);

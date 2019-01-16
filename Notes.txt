@@ -186,3 +186,9 @@ Misc.
 	Noted that Reverse8by8 was wrong, fixed manually
 	Set scrollableList to have nothing selected by default (before it was first item by default)
 2 hours today
+Fixed minor bug
+	Noted error in the way the start positions work
+	Determined they were saved properly, but not loaded properly
+	Actually they were loaded properly; the game just doesn't start on the start space
+	I found I hadn't reset the location of the agent when the new map was chosen
+	Took about 20 minutes, for a total of 2:20 today
