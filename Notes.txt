@@ -208,3 +208,8 @@ Decay
 		Changing to 0.3 makes it get stuck in corners a lot, just repeating end of last run (overfitting?)
 		Changing to 0.1 makes it take a very long time to find its way, then do okay, then hover around 60
 		Changing to 1.2 makes it fritz
+	Testing in Trap1
+		Min possible route is 14
+		Standard Exponential Learner sometimes gets down to 52 (exactly 52 three times) but then goes back up, all for seed 0
+		ExponentialWithDecay HAS A PROBLEM WITH CORRIDORS
+			Probably because it tries going into the walls towards the end, and punishes what got it almost to the end and goes the other way

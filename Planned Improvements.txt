@@ -29,6 +29,8 @@ Models that can be multiple of the different agents with only parameters changed
 	Would clean up code substantially
 	Maybe put agents in a subfolder?
 	Really, only linear vs. exponential is major difference, the rest is minor
+Model that can tune decay, correction factor, etc. based on how it's improving
+	"Introspective"
 Better info display system
 	Change toString to use scientific notation
 Pure punishment
