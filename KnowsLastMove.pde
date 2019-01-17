@@ -14,6 +14,7 @@ public class KnowsLastMove implements Agent{
   protected Random rand;
   protected final double DECAY;
   protected final double CORRECTION_FACTOR;
+  protected final double EXPLORATION_RATE;
   
   public KnowsLastMove(Random r){
     
@@ -58,6 +59,7 @@ public class KnowsLastMove implements Agent{
     rand = r;
     DECAY = 0.8;
     CORRECTION_FACTOR = 1;
+    EXPLORATION_RATE = 0.1;
   }
   
   //Same as in ExponentialWithDecay, but it gets the right thing based on the 
@@ -112,8 +114,9 @@ public class KnowsLastMove implements Agent{
       }
     }
     
-    //Choose randomly if it's 0 all around, so it's stuck
-    if ( total==0 ){    
+    //Choose randomly if it's 0 all around, so it's stuck, or it's time to explore instead
+    double explore = rand.nextDouble();
+    if ( total==0 || explore<EXPLORATION_RATE ){    
       double d2 = rand.nextDouble();
       if (d2<0.25){
         c = 'u';

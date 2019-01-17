@@ -2,6 +2,9 @@ Have goal not in corner
 	Maybe 1 or two away
 	Agents wouldn't be scared off by hitting walls near goal
 	Agents wouldn't be able to crawl along walls
+Time
+	Punish slightly for taking time
+	Adjust exploration rate based on time, maybe time since positive reward
 Organize Planned Improvements
 const double correctionFactor for all agents
 	That way rewards for each square only have to be relative to each other

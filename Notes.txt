@@ -243,3 +243,11 @@ Created KnowsLastMove
 	Tested with 7by14: (actually 5x12) Seed 0: 243, 93, 194, 22, 21, 24, 19, 22, 31, 19, 20, 22, 22
 		Works fine
 	Changed 7by14 to 5by12
+	Added EXPLORATION_RATE of 0.1
+	Tested 16by16 again
+		Basic:	Seed 0: 779, 83, 69, 68, 30 (perfect), 30, 39, 34, 37, 37, 33, 31, etc.
+			Seed 1: 763, 106, 4519 (bounced against top wall a LOT in beginning), 63 (I don't get it), 254
+		Yellow Brick Road, Seed 0: 267, then just goes left and right
+	Tested linked boxes
+		Breadcrumbs, Seed 0: just goes left and right a lot
+4.5 hours today
