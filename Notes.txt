@@ -223,8 +223,23 @@ Breadcrumbs
 		With, ExponentialWithDecay, Seed 0: 733, 601, 70 (beelined, then scrwed up ONE short), 254, 34(!), 39, 36, 35, 38, 34, 40, 36, 38, 35, 37, 37, 38, 35, 37, 37, 39, 37, 35, 33, etc. (30 is perfect)
 			Hugs walls until hits edge, then turns the right way. BEAUTIFUL!
 Created KnowsLastMove
-	Includes constructor, reward(), move(), toString(), softReset()
+	Includes constructor, reward(), move(), toString(), softReset(), DECAY, CORRECTION_FACTOR
 		Though toString() DOES NOT WORK YET
 	Uses exponential with decay reward algorithm
 	Added it to menu
 	Basic8by8, seed 0: 104, 48, 15, 14, 14, 14s forever! (goes down and right repeatedly)
+	Tested with 16by16's
+		Without, seed0: 622, 1426, 91, 1862, 74, 251, 809, 60, 30 (optimal, diagonal), 30, 31, 30, 30, etc.
+		Breadcrumb, seed0: WIREHEADING!
+		Created YellowBrickRoad16by16
+		YellowBrickRoad: more wireheading
+	Tested with Linked Boxes (3x6x6 with breadcrumbs) for wireheading
+		Yup, at least for seed 0
+	Tested with Island: Seed 0: 490, 352, 348, 39, 233, 174, 54, 118, 247, 31, 95, 86, 123, 80, 22, 23, 38, 69, 121
+		ExponentialWithDecay, Island, Seed 0: 85, 17, 19, 18, 21, 20, 18, etc.
+		Got tripped up on Island, which is interesting. In what way is it less powerful?
+	Tested with Trap1: Seed 0: 984, 874, 711, 883, 252, 574, 117, 311
+		Still can't get this one
+	Tested with 7by14: (actually 5x12) Seed 0: 243, 93, 194, 22, 21, 24, 19, 22, 31, 19, 20, 22, 22
+		Works fine
+	Changed 7by14 to 5by12

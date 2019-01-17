@@ -1,3 +1,7 @@
+Have goal not in corner
+	Maybe 1 or two away
+	Agents wouldn't be scared off by hitting walls near goal
+	Agents wouldn't be able to crawl along walls
 Organize Planned Improvements
 const double correctionFactor for all agents
 	That way rewards for each square only have to be relative to each other
@@ -5,7 +9,7 @@ Make default map actually default map
 	Maybe only update map when scrollableList changes
 	Maybe temporary solution
 Database system for square types
-Two agents running side by side for easy comparison
+Breadcrumbs that are removable
 Let LevelEditor actually EDIT levels, instead of just creating them
 Document file format rules
 Implement better copying system for GameMap and LevelEditor
@@ -15,6 +19,10 @@ New, more interesting maps
 Copy Minds
 Model that uses past move or two to decide
 	Make sure it knows whether it's hit a wall
+Bring back SpeedDemon-like system
+	Save changes as working model in part of memory
+	Only update for real at end if better
+Separate current situation (walls) from global training
 Model with understanding of position
 Model with understanding of current and surrounding squares
 	Maybe use binary stuff before neural network
@@ -36,10 +44,14 @@ Model that can tune decay, correction factor, etc. based on how it's improving
 Visualize what is avaiable to get rewarded or punished
 	Histograms for the directions
 	Path (fading) along map
+Two agents running side by side for easy comparison
+Slider for animation speed
 Checkpoints
 	Can be datapoints: agent knows what last checkpoint was, can change behvaior accordingly
 Better info display system
 	Change toString to use scientific notation
+	Implement toString in KnowsLastMove
+	Maybe save good info in a file, so I don't have to run it every time
 Pure punishment
 Document properly
 	Comments
