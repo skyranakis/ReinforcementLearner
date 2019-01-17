@@ -47,6 +47,7 @@ Model that can tune decay, correction factor, etc. based on how it's improving
 Visualize what is avaiable to get rewarded or punished
 	Histograms for the directions
 	Path (fading) along map
+	Make comparison to automata
 Two agents running side by side for easy comparison
 Slider for animation speed
 Checkpoints
