@@ -104,6 +104,9 @@ public class GameMap
     }else if (type.equals("Goal")){
       stroke(0, 0, 0);
       fill(0, 255, 0);
+    }else if (type.equals("Breadcrumb")){
+      stroke(0, 0, 0);
+      fill(255, 255, 0);
     }else{
       stroke(0, 0, 0);
       fill(255, 0, 255);
@@ -121,7 +124,7 @@ public class GameMap
       return 2; //Tried to change wall on edge
     }
     //Change if Wall, Normal, or Goal and none of the above apply
-    if ( type.equals("Wall") || type.equals("Normal")|| type.equals("Goal") ){
+    if ( type.equals("Wall") || type.equals("Normal") || type.equals("Goal") || type.equals("Breadcrumb")){
       if (row == startPosition[0] && col == startPosition[1]){
         return 3; //Tried to change start
       }
@@ -174,6 +177,8 @@ public class GameMap
       return 0;
     }else if(square.equals("Goal")){
       return 10;
+    }else if(square.equals("Breadcrumb")){
+      return 1;
     }else{
       return 0;
     }

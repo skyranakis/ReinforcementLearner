@@ -213,3 +213,12 @@ Decay
 		Standard Exponential Learner sometimes gets down to 52 (exactly 52 three times) but then goes back up, all for seed 0
 		ExponentialWithDecay HAS A PROBLEM WITH CORRIDORS
 			Probably because it tries going into the walls towards the end, and punishes what got it almost to the end and goes the other way
+Breadcrumbs
+	Implemented breadcrumbs, which seemed to work first try!
+	Created Basic16by16 and 16by16withDiagonalBreadcrumbs3Apart to attempt to show power of breadcrumbs
+		Basic16by16, ExponentialWithDecay, seed 0:230, 39, 2930, 323, 36, 3008, 111, 33, 191, 31 (30 is min!), 37, 37, 385, 60, 33, high again (I don't get it)
+		16by16withDiagonalBreadcrumbs3Apart, ExponentialWithDecay, seed 0: 654, 35 (avoiding crumbs), 203, 33 doesn't seem to help
+	Created LinkedBoxes3x6x6woBreadcrumbs and LinkedBoxes3x6x6withBreadcrumbs to do better
+		Without, ExponentialWithDecay, Seed 0: 806, 687 (went to third box almost immediately, then freaked), 432, 1626 (Damn!), 346, 82, 104, 109, 132, 178, 35(!), 155, 60, 59, 107, 259, 144, 165, 91, 272
+		With, ExponentialWithDecay, Seed 0: 733, 601, 70 (beelined, then scrwed up ONE short), 254, 34(!), 39, 36, 35, 38, 34, 40, 36, 38, 35, 37, 37, 38, 35, 37, 37, 39, 37, 35, 33, etc. (30 is perfect)
+			Hugs walls until hits edge, then turns the right way. BEAUTIFUL!

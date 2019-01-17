@@ -29,7 +29,8 @@ public class LevelEditor
       .addItem("Normal",1)
       .addItem("Wall",2)
       .addItem("Start",3)
-      .addItem("Goal",4);
+      .addItem("Goal",4)
+      .addItem("Breadcrumb",5);
     
     cp5.addButton("returnToMenu")
       .setPosition(450,550)
@@ -71,6 +72,7 @@ public class LevelEditor
     text("Wall",500,85);
     text("Start",500,105);
     text("Goal",500,125);
+    text("Breadcrumb",500,145);
     checkFieldsAndAct();
     newMap.drawMap();
   }

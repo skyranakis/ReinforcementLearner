@@ -8,3 +8,7 @@ Island
 LetterS
 Trap1
 MovedStartForTest
+Basic16by16
+16by16withDiagonalBreadcrumbs3Apart
+LinkedBoxes3x6x6woCrumbs
+LinkedBoxes3x6x6withCrumbs

@@ -31,6 +31,10 @@ Models that can be multiple of the different agents with only parameters changed
 	Really, only linear vs. exponential is major difference, the rest is minor
 Model that can tune decay, correction factor, etc. based on how it's improving
 	"Introspective"
+"Game" that lets the player see what the thing agent sees
+Visualize what is avaiable to get rewarded or punished
+	Histograms for the directions
+	Path (fading) along map
 Better info display system
 	Change toString to use scientific notation
 Pure punishment
