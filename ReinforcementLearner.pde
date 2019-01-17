@@ -206,7 +206,7 @@ void turnMenuOn(){
     .setPosition(100,160);
   
   List agentTypes = Arrays.asList("Simple Learner", "Speed Demon", "Speed Demon with Exploration",
-    "Reward and Punishment Learner", "Exponential Learner", "Linear with Decay", "Exponential with Decay");
+    "Reward and Punishment Learner", "Exponential Learner", "Linear with Decay", "Exponential with Decay", "KnowsLastMove");
   cp5.addScrollableList("whichAgent")
     .setPosition(100,200)
     .addItems(agentTypes);
@@ -271,6 +271,7 @@ void setUpAgent(int agentIndex, Random rand){
     case 4: curA = new ExponentialLearner(rand); break;
     case 5: curA = new LinearWithDecay(rand); break;
     case 6: curA = new ExponentialWithDecay(rand); break;
+    case 7: curA = new KnowsLastMove(rand); break;
   }
 }
 

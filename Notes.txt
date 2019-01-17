@@ -222,3 +222,9 @@ Breadcrumbs
 		Without, ExponentialWithDecay, Seed 0: 806, 687 (went to third box almost immediately, then freaked), 432, 1626 (Damn!), 346, 82, 104, 109, 132, 178, 35(!), 155, 60, 59, 107, 259, 144, 165, 91, 272
 		With, ExponentialWithDecay, Seed 0: 733, 601, 70 (beelined, then scrwed up ONE short), 254, 34(!), 39, 36, 35, 38, 34, 40, 36, 38, 35, 37, 37, 38, 35, 37, 37, 39, 37, 35, 33, etc. (30 is perfect)
 			Hugs walls until hits edge, then turns the right way. BEAUTIFUL!
+Created KnowsLastMove
+	Includes constructor, reward(), move(), toString(), softReset()
+		Though toString() DOES NOT WORK YET
+	Uses exponential with decay reward algorithm
+	Added it to menu
+	Basic8by8, seed 0: 104, 48, 15, 14, 14, 14s forever! (goes down and right repeatedly)
