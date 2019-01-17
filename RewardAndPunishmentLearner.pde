@@ -53,14 +53,14 @@ public class RewardAndPunishmentLearner implements Agent
   }
   
   //Adjusts the model according to the reward
-  public void reward(int time, double reward, boolean reachedGoal){
+  public int reward(int time, double reward, boolean reachedGoal){
     int len = mem.length();    //should = time
     
     for (int i=0; i<len; i++){
       char curChar = mem.charAt(i);
       
       if (len==0){
-        len = 1;    //Unscientific, but avoids division by 0
+        return 1;
       }
       
       model.put(""+curChar, model.get(""+curChar)+reward/len); //adds reward/len to the value associated with the current char
@@ -77,6 +77,8 @@ public class RewardAndPunishmentLearner implements Agent
     if (reachedGoal){
       softReset();
     }
+    
+    return 0;
     
   }
   

@@ -1,3 +1,6 @@
+Organize Planned Improvements
+const double correctionFactor for all agents
+	That way rewards for each square only have to be relative to each other
 Make default map actually default map
 	Maybe only update map when scrollableList changes
 	Maybe temporary solution
@@ -7,8 +10,6 @@ Document file format rules
 Implement better copying system for GameMap and LevelEditor
 	Consider changing how one considers size of map (do mandatory edge wall count?)
 Make sure 0 reward never matters
-Dropdown to choose map
-Level editor
 New, more interesting maps
 Copy Minds
 Checkpoints in map
@@ -20,6 +21,14 @@ Model that can stay
 	To help build towards Labyrinth AI
 	To demonstrate wireheading
 	Include in constructors allowed move
+Model that knows opposites
+	eg reinforcing right positively reinforces left negatively
+	Seems to do that on its own, oddly enough, when it hits a wall, it already careens in other direction
+Models that can be multiple of the different agents with only parameters changed
+	Like ExponentialLearner is ExponentialWithDecay with decay=1
+	Would clean up code substantially
+	Maybe put agents in a subfolder?
+	Really, only linear vs. exponential is major difference, the rest is minor
 Better info display system
 	Change toString to use scientific notation
 Pure punishment

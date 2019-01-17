@@ -16,11 +16,12 @@ public class SpeedDemon extends SimpleLearner{
   }
   
   //Overrides the other reward function to only work if the new time sets a record
-  public void reward(int time, double reward, boolean reachedGoal){
+  public int reward(int time, double reward, boolean reachedGoal){
     if ( time<recordTime && reachedGoal ){
       super.reward(time, reward, reachedGoal);
       recordTime = time;
     }
+    return 0;
   }
   
 }

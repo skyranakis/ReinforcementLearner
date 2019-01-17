@@ -2,22 +2,22 @@
       
 */
 
-public class RewardAndPunishmentLearner2 extends RewardAndPunishmentLearner
+public class ExponentialLearner extends RewardAndPunishmentLearner
 {
   
-  public RewardAndPunishmentLearner2(Random r){
+  public ExponentialLearner(Random r){
     super(r);
   }
   
   //Overrides reward to use multiplication instead of addition for exponential gains
-  public void reward(int time, double reward, boolean reachedGoal){
+  public int reward(int time, double reward, boolean reachedGoal){
     int len = mem.length();    //should = time
     
     for (int i=0; i<len; i++){
       char curChar = mem.charAt(i);
       
       if (len==0){
-        len = 1;    //Unscientific, but avoids division by 0
+        return 1;   //Error
       }
 
       double currentVal = model.get(""+curChar);
@@ -32,6 +32,8 @@ public class RewardAndPunishmentLearner2 extends RewardAndPunishmentLearner
     if (reachedGoal){
       softReset();
     }
+    
+    return 0;
     
   }
   

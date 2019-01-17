@@ -46,7 +46,7 @@ public class SimpleLearner implements Agent
   }
   
   //Adjusts the model according to the reward
-  public void reward(int time, double reward, boolean reachedGoal){
+  public int reward(int time, double reward, boolean reachedGoal){
     
     if (reachedGoal){
       
@@ -81,6 +81,8 @@ public class SimpleLearner implements Agent
       softReset();
 
     }
+    
+    return 0;
     
   }
   

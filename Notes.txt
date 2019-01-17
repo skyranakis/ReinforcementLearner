@@ -192,3 +192,19 @@ Fixed minor bug
 	Actually they were loaded properly; the game just doesn't start on the start space
 	I found I hadn't reset the location of the agent when the new map was chosen
 	Took about 20 minutes, for a total of 2:20 today
+
+1/16/19
+Changed "RewardAndPunishmentLearner2" to Exponential Learner
+	Why wasn't this done already?
+Changed all reward() to return int to convey errors if necessary
+Decay
+	Added LinearWithDecay and ExponentialWithDecay classes
+	Added the aforementioned two to the dropdown list in front
+	Holy crap ExponentialWithDecay converges CRAZY quickly for Seed 0 in Basic8by8
+		Notice it usually alternates between straight down, then right, and vice versa
+		Linear also converges very, very quickly compared to original Linear
+	The above had decay 0.8 (and correction factor of 1)
+		Changing to 0.5 makes ExponentialDecay less impressive, but still okay
+		Changing to 0.3 makes it get stuck in corners a lot, just repeating end of last run (overfitting?)
+		Changing to 0.1 makes it take a very long time to find its way, then do okay, then hover around 60
+		Changing to 1.2 makes it fritz
