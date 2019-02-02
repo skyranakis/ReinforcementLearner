@@ -251,3 +251,8 @@ Created KnowsLastMove
 	Tested linked boxes
 		Breadcrumbs, Seed 0: just goes left and right a lot
 4.5 hours today
+
+1/24/19:
+Created KnowsPosition
+Created Position
+2 hours

@@ -1,3 +1,5 @@
+Clean up info passing
+	Actual class or at least abstract class
 Have goal not in corner
 	Maybe 1 or two away
 	Agents wouldn't be scared off by hitting walls near goal
